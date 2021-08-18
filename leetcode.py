@@ -1,5 +1,66 @@
 class Leetcode:
 
+  def integerToRoman(self,num: int) -> str:
+    conversion = {'M':1000,'CM':900,'D':500,'CD':400,'C':100,'XC':90,'L':50,'XL':40,'X':10,'IX':9,'V':5,'IV':4,'I':1}
+    count = {'M':0,'CM':0,'D':0,'CD':0,'C':0,'XC':0,'L':0,'XL':0,'X':0,'IX':0,'V':0,'IV':0,'I': 0}
+    for key,val in conversion.items():
+      print(key,val)
+      if(num<val): continue
+      else: 
+        count[key] = num // val
+        num = num % val
+        print(num)
+    roman = ''  
+    for key,val in count.items():
+      roman = roman + key*val
+    return roman
+
+  def containerWithMostWater(self,height:[int])-> int:
+    """
+    maxArea = 0
+    for i,h in enumerate(height):
+      for j,h1 in enumerate(height,i+1):
+        maxArea = max(maxArea,(j-i)*min(h,h1))
+        
+    ----------------------------------------------------------------naive approach       
+    """
+    r = len(height) - 1
+    l = 0
+    maxArea = 0
+    while l < r:
+      maxArea = max(maxArea,(r-l)*min(height[r],height[l]))
+      if(height[r] > height[l]):
+        l +=1
+      else: r-=1
+    print(r,l)
+    print(min(height[r],height[l]))
+    return maxArea
+    
+
+  def removeElement(self,nums: [int], val: int) -> int:
+    k = 0
+    for i in range(len(nums)):
+      if(nums[i]==val):
+        continue
+      nums[k] = nums[i]
+      k = k + 1
+    nums = nums[:k]
+    print(nums)
+    return k
+
+  def removeDuplicates(self,nums:[int]) -> int:
+    k = 1
+    if(len(nums) == 0 or len(nums) == 1):
+      return len(nums)
+    for i in range(1,len(nums)):
+      if(nums[i-1] == nums[i]):
+        continue
+      nums[k] = nums[i]
+      k = k + 1
+    nums = nums[:k]
+    print(nums)
+    return k
+
   def validParentheses(self, s:str) -> bool:
     open_list = ["[","{","("]
     close_list = ["]","}",")"]
@@ -135,7 +196,11 @@ lc = Leetcode()
 #z = lc.reverse(x=-1234567)
 #z = lc.romanToInt('MMMCDXC')
 #z = lc.longestCommonPrefix(strs=["reflo","fl",'flower'])
-z = lc.validParentheses(s='((([)))')
+#z = lc.validParentheses(s='((([)))')
+#z = lc.removeDuplicates(nums=[0,0,0,1])
+#z = lc.removeElement(nums=[0,1,2,2,3,0,4,2],val=2)
+#z = lc.containerWithMostWater(height=[1, 5, 4, 3])
+z = lc.integerToRoman(num=58)
 print(z)
 
 
