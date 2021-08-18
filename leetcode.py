@@ -1,5 +1,98 @@
 class Leetcode:
+  
+  def calculateXpowerY(self,x:[int],y:[int]) -> [int]:
+    z = 1
+    while y > 0:
+      if(y%2==0):
+        x = x * x
+        y = y - 1
+      else:
+        z = z * x
+        y = y - 1
+    return z
+  
+  def partition(self,start:[int],end:[int],arr:[int]) -> [int]:
+    pivot_index = start
+    pivot = arr[pivot_index]
+    while start < end:
+      while start < len(array) and array[start] <= pivot:
+        start += 1
+              
+      while array[end] > pivot:
+        end -= 1
+          
+      if(start < end):
+        array[start], array[end] = array[end], array[start]
+    
+    array[end], array[pivot_index] = array[pivot_index], array[end]
+    return end
 
+  
+  def quicksort(self,start:[int],end:[int],arr:[int]) -> [int]:
+    if(start<end):
+      p = self.partition(start,end,arr)
+      quicksort(start,p-1,arr)
+      quicksort(p+1,end,arr)
+    return arr
+
+  def mergeSort(self, arr:[int]) -> [int]:
+    if(len(arr)>1):
+      m = len(arr) // 2
+      L = arr[:m]
+      print('L',L)
+      R = arr[m:]
+      print('r',R)
+      self.mergeSort(L)
+      self.mergeSort(R)
+      i = j = k = 0
+      while i < len(L) and j < len(R):
+        if(L[i] < R[j]):
+          arr[k] = L[i]
+          i +=1
+        else:
+          arr[k] = R[j]
+          j+=1
+        k+=1
+      while (i<len(L)):
+        arr[k] = L[i]
+        k+=1
+        i+=1
+      while (j<len(R)):
+        arr[k] = R[j]
+        k+=1
+        j+=1
+    return arr
+        
+
+  def insertionSort(self,arr:[int]) -> [int]:
+    for i in range(1,len(arr)):
+      key = arr[i]
+      j = i - 1
+      while j>=0 and arr[j] > key:
+        arr[j+1] = arr[j]
+        j -=1
+      arr[j+1] = key
+      print(arr)
+    return arr
+
+  def bubbleSorted(self,arr:[int]) -> [int]:
+    for i in range(len(arr)):
+      for j in range(0,len(arr)-i-1):
+        if(arr[j]>arr[j+1]):
+          arr[j],arr[j+1] = arr[j+1],arr[j]
+      print(arr)
+    return arr
+
+  def selectionSort(self,arr:[int]) -> [int]:
+    for i in range(len(arr)):
+      min_idx = i
+      for j in range(i+1, len(arr)):
+        if arr[min_idx] > arr[j]:
+          min_idx = j
+      arr[i], arr[min_idx] = arr[min_idx], arr[i]
+      print(arr)
+    return arr
+    
   def integerToRoman(self,num: int) -> str:
     conversion = {'M':1000,'CM':900,'D':500,'CD':400,'C':100,'XC':90,'L':50,'XL':40,'X':10,'IX':9,'V':5,'IV':4,'I':1}
     count = {'M':0,'CM':0,'D':0,'CD':0,'C':0,'XC':0,'L':0,'XL':0,'X':0,'IX':0,'V':0,'IV':0,'I': 0}
@@ -200,7 +293,11 @@ lc = Leetcode()
 #z = lc.removeDuplicates(nums=[0,0,0,1])
 #z = lc.removeElement(nums=[0,1,2,2,3,0,4,2],val=2)
 #z = lc.containerWithMostWater(height=[1, 5, 4, 3])
-z = lc.integerToRoman(num=58)
+#z = lc.integerToRoman(num=58)
+#z = lc.selectionSort(arr=[4,2,3,5])
+#z = lc.bubbleSorted(arr=[4,3,5,1])
+#z = lc.insertionSort(arr=[4,3,5,1])
+z = lc.mergeSort(arr=[4,3,5,1])
 print(z)
 
 
