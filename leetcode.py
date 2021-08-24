@@ -1,5 +1,58 @@
 class Leetcode:
-  
+
+  def searchInsertPostion(self,nums:[int],target:int) -> int:
+    #nums is sorted
+    '''
+    for i,n in enumerate(nums): 
+      if(target == n):
+        return i
+      elif(target < n and i != len(nums)-1):
+        return i
+      elif(target > n and i == len(nums)-1):
+       return len(nums)
+    ''' 
+    r = len(nums) - 1
+    l = 0
+    while l<=r:
+      mid = (l + r) // 2
+      if(nums[mid]>target):
+        r = r - 1
+      elif(nums[mid]==target):
+        return mid
+      else:
+        l = l + 1
+    return r + 1
+
+  def threeSumZero(self,nums:[int]) -> [[int]]:
+    length = len(nums)
+    nums.sort()
+    uniqueTriplets = []
+    for i in range(0,length-2):
+      l = i + 1
+      r = length - 1
+      while l < r:
+        x = nums[i]
+        if(nums[l] + nums[r] + x == 0):
+          newTriplet = [nums[l], nums[r],x]
+          if newTriplet not in uniqueTriplets:
+            uniqueTriplets.append(newTriplet)
+          l += 1
+          r -= 1
+        elif(nums[l] + nums[r] + x < 0):
+          l+=1
+        else:
+          r-= 1
+    return uniqueTriplets
+
+  def calculateMovingAverages(self,x: [int], windowSize: int) -> [int]:
+    movingAvg = []
+    for i in range(len(x)-windowSize+1):
+      avg = 0
+      for j in range(i,windowSize+i):
+        avg += x[j]
+      movingAvg.append(avg/3)
+    return movingAvg
+
   def calculateXpowerY(self,x:[int],y:[int]) -> [int]:
     z = 1
     while y > 0:
@@ -285,7 +338,7 @@ class Leetcode:
 lc = Leetcode()              
 #z = lc.lengthOfLongestSubstring(s='abcabcaa')
 #z = lc.medianOfSortedArrays(a1=[1,2,3], a2=[4,5,6,7])
-#z = lc.longestPalindrome(s='aabaa')
+#z = lc.longestPalindrome(s='cbbd')
 #z = lc.reverse(x=-1234567)
 #z = lc.romanToInt('MMMCDXC')
 #z = lc.longestCommonPrefix(strs=["reflo","fl",'flower'])
@@ -297,9 +350,8 @@ lc = Leetcode()
 #z = lc.selectionSort(arr=[4,2,3,5])
 #z = lc.bubbleSorted(arr=[4,3,5,1])
 #z = lc.insertionSort(arr=[4,3,5,1])
-z = lc.mergeSort(arr=[4,3,5,1])
+#z = lc.mergeSort(arr=[4,3,5,1])
+#z = lc.calculateMovingAverages(x=[3,4,5,6,7,8,9,10,11,12],windowSize=3)
+#z = lc.threeSumZero(nums=[-1,0,1,2,-1,-4])
+z = lc.searchInsertPostion(nums = [1,3,5,6], target = 7)
 print(z)
-
-
-
-            
