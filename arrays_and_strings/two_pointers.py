@@ -33,20 +33,3 @@ def target_sum(nums, target) :
 print(target_sum(nums = [1,2,4,6,8,9,14,15], target = 13))
 # O(1) space complexity
 # O(n) time complexity
-
-# 2 sum, return indexes
-def two_sum(nums, target) -> list[int] :
-    i = 0
-    j = len(nums) - 1
-    while i < j:
-        curr = nums[i] + nums[j]
-        if(curr == target) :
-            return [i,j]
-        elif (curr < target) :
-            i += 1
-        else:
-            j -= 1
-    return [-1,-1]
-
-indexes = two_sum(nums = [1,2,4,6,8,9,14,15], target = 13)
-print(indexes)
