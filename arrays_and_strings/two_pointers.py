@@ -99,7 +99,7 @@ class Basics:
     #print(l)
 
     # Two_sum given unsorted array in O(n)
-    def two_sum(nums,target):
+    def two_sum(self, nums,target):
         p = dict()
         for i,val in enumerate(nums):
             rem = target - val
@@ -107,3 +107,6 @@ class Basics:
                 return [p[rem], i]
             p[val] = i
 
+obj = Basics()
+z = obj.two_sum([1,5,4,3],6)
+print(z)

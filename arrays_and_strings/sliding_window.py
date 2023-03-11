@@ -1,7 +1,6 @@
 class SlidingWindow:    
-
     #find the length of longest subarray with a sum less than K
-    def find_length(self,nums: list[int],k = int) -> int:
+    def find_length(self, nums = list[int], k = int) -> int:
         ans = l = sum = 0
         for r in range(len(nums)):
             sum += nums[r]
@@ -22,7 +21,7 @@ class SlidingWindow:
     # OR - reframed as follows:
     # find the length of the longest substring containing atmost one 0.
 
-    def find_length2(self,string: str) -> int:    
+    def find_length2(self, string: str) -> int:    
         ans = l = cur = 0
         for r in range(len(string)):
             if(string[r] == "0"):
@@ -38,17 +37,19 @@ class SlidingWindow:
         #print(l)
 
     # No. subarray product less than k
-    def numsubarrayProducLessThanK(self,arr: list(int), k: int) -> int:
+    def numsubarrayProducLessThanK(self, nums = list[int], k = int) -> int:
         if k <= 1:
             return 0
         prod = 1
         l = ans = 0
-
-        #for r in range(len(arr)):
-            
-
-        #return ans 
+        for r in range(len(nums)):
+            prod *= nums[r]
+            if prod >= k:
+                prod //= nums[l]
+                l+=1    
+            ans += r-l+1
+        return ans 
     
 sw = SlidingWindow()
-l = sw.find_length([1,2,3,4,5],k=6)
+l = sw.numsubarrayProducLessThanK(nums=[10,5,2,6],k=100)
 print(l)
