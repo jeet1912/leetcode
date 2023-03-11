@@ -1,6 +1,6 @@
 class SlidingWindow:    
     #find the length of longest subarray with a sum less than K
-    def find_length(self, nums = list[int], k = int) -> int:
+    def find_length(self, nums : list[int], k : int) -> int:
         ans = l = sum = 0
         for r in range(len(nums)):
             sum += nums[r]
@@ -37,7 +37,7 @@ class SlidingWindow:
         #print(l)
 
     # No. subarray product less than k
-    def numsubarrayProducLessThanK(self, nums = list[int], k = int) -> int:
+    def numsubarrayProducLessThanK(self, nums : list[int], k : int) -> int:
         if k <= 1:
             return 0
         prod = 1
@@ -49,6 +49,21 @@ class SlidingWindow:
                 l+=1    
             ans += r-l+1
         return ans 
+    
+    # Given an integer array nums and an integer k, find the sum of the subarray 
+    # with the largest sum whose length is k.    
+    # Fixed_Window
+    def largest_sum(self, nums : list[int], k : int) -> int:
+        ans = curr = l = 0
+        for r in range(k):
+            curr += nums[r]
+        ans = curr
+        for l in range(k,len(nums)):
+            curr += nums[l] - nums[l-k]
+            ans = max(ans,curr) 
+
+
+
     
 sw = SlidingWindow()
 l = sw.numsubarrayProducLessThanK(nums=[10,5,2,6],k=100)
