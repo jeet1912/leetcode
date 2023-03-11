@@ -30,6 +30,70 @@ def target_sum(nums, target) :
     return False 
 
 
-print(target_sum(nums = [1,2,4,6,8,9,14,15], target = 13))
+#print(target_sum(nums = [1,2,4,6,8,9,14,15], target = 13))
 # O(1) space complexity
 # O(n) time complexity
+
+
+# combining two arrays, O(n+m)
+
+def combine(num1,num2):
+    ans = []
+    i = j = 0
+    while i < len(num1) and j < len(num2):
+        if(num1[i]<num2[j]):
+            ans.append(num1[i])
+            i+=1
+        else:
+            ans.append(num2[j])
+            j+=1
+    while i<len(num1):
+        ans.append(num1[i])
+        i+=1
+    while j<len(num2):
+        ans.append(num2[j])
+        j+=1
+    return ans
+
+# Subsequence, given two strings s and t, find out if s is a subsequence of t or not with gaps allowed
+# O(len(s) + len(t))
+def subsequence(s,t):
+    i = j = 0
+    while i < len(s) and j < len(t):
+        if(s[i] == s[j]):
+            i +=1
+        j+=1
+    return i == len(s)
+
+#Reverse a string in place
+def reverse(s):
+    i = 0
+    j = len(s) - 1
+    while i<j:
+      s[i],s[j] = s[j],s[i]
+      i+=1
+      j-=1
+    print(s)
+
+#reverse(["h","e","l","l","o"])
+
+        
+# Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+# implement in O(n) time complexity
+def sorted_square(nums) -> list[int]:
+    l = 0
+    r = len(nums)-1
+    s = 0
+    sorted = [0]*len(nums)
+    for i in range(len(nums)-1,-1,-1):
+        if(abs(nums[l])<abs(nums[r])):
+            s = nums[r]
+            r -=1
+        else:
+            s = nums[l]
+            l+=1
+        sorted[i] = s * s
+    return sorted
+
+l = sorted_square([-5,-4,-3,0,1,2,6])
+print(l)
