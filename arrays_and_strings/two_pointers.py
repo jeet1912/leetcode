@@ -30,7 +30,7 @@ def target_sum(nums, target) :
     return False 
 
 
-#print(target_sum(nums = [1,2,4,6,8,9,14,15], target = 13))
+#print('Target_sum exists :',target_sum(nums = [2,4,7], target = 9))
 # O(1) space complexity
 # O(n) time complexity
 
@@ -95,5 +95,18 @@ def sorted_square(nums) -> list[int]:
         sorted[i] = s * s
     return sorted
 
-l = sorted_square([-5,-4,-3,0,1,2,6])
-print(l)
+#l = sorted_square([-5,-4,-3,0,1,2,6])
+#print(l)
+
+# Two_sum given unsorted array
+def two_sum(nums,target):
+    p = dict()
+    for i,val in enumerate(nums):
+        rem = target - val
+        if (rem in p):
+            return [p[rem], i]
+        p[val] = i
+
+z = two_sum([2,7,11,15],9)
+print(z)
+
