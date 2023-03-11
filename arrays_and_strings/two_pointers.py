@@ -98,7 +98,7 @@ def sorted_square(nums) -> list[int]:
 #l = sorted_square([-5,-4,-3,0,1,2,6])
 #print(l)
 
-# Two_sum given unsorted array
+# Two_sum given unsorted array in O(n)
 def two_sum(nums,target):
     p = dict()
     for i,val in enumerate(nums):
