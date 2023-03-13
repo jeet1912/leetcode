@@ -80,6 +80,7 @@ class Basics:
             
     # Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
     # implement in O(n) time complexity
+    # space complexity - O(n)
     def sorted_square(nums) -> list[int]:
         l = 0
         r = len(nums)-1

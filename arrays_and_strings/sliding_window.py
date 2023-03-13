@@ -62,9 +62,36 @@ class SlidingWindow:
             curr += nums[l] - nums[l-k]
             ans = max(ans,curr) 
 
+    #You are given an integer array nums consisting of n elements, and an integer k.
+    #Find a contiguous subarray whose length is equal to k that has the maximum average value 
+    # and return this value.
 
+    def practiceProb(self, nums: list[int], k: int) -> float:
+        avg = sum = 0
+        for i in range(k):
+            sum += nums[i]
+        avg = sum/k
 
+        for i in range(k,len(nums)):
+            sum += nums[i] - nums[i-k]
+            avg = max(avg,sum/k)
+        return avg
+
+    #Given a binary array nums and an integer k, 
+    # return the maximum number of consecutive 1's in the array if you can flip at most k 0's    
     
+    def practiceProb2(self, nums: list[int], k:int) -> int:
+        l = curr = ans = 0 
+        for r in range(len(nums)):
+            if(nums[r]==0):
+                curr += 1
+            while curr>k:
+                if(nums[l] == 0):
+                    curr -=1
+                l+=1
+            ans = max(ans, r-l+1)
+        return ans
+
 sw = SlidingWindow()
-l = sw.numsubarrayProducLessThanK(nums=[10,5,2,6],k=100)
+l = sw.practiceProb2(nums=[0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1],k=3)
 print(l)
