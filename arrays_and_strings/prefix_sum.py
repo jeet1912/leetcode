@@ -20,7 +20,7 @@ class PrefixSum:
     #  the second section. The second section should have at least one number.
     def numWaysToSplitArray(self,nums):
         prefix_sum = [nums[0]]
-        for i in range(len(nums)):
+        for i in range(1,len(nums)):
             prefix_sum.append(nums[i] + prefix_sum[-1])
         ans = 0
         for r in range(len(nums)-1):
@@ -30,6 +30,7 @@ class PrefixSum:
                 ans+=1
         return ans
     #Time complexity - O(n) - space complexity
+    
     # in O(1) - space complexity
     def numWaysToSplitArray2(self,nums):
         ans = total = 0
@@ -39,9 +40,14 @@ class PrefixSum:
             right_sum = total - left_sum
             if left_sum >= right_sum:
                 ans +=1
-        
+
+    # running sum
+    def runningSum(self,nums):
+        prefix_sum = [nums[0]]
+        for i in range(1,len(nums)):
+            prefix_sum.append(nums[i] + prefix_sum[-1])
+        return prefix_sum
 
 ps = PrefixSum()
-n = [10,4,-8,7]
-t = ps.problem1([1, 6, 3, 2, 7, 2],[[0, 3], [2, 5], [2, 4]],13)
+t = ps.runningSum([1, 6, 3, 2, 7, 2])
 print(t)
