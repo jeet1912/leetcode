@@ -134,7 +134,6 @@ class Basics:
     
     def reverseOnlyEnglishLetters(self,string):
         arr = list(string)
-        print("Check ",arr)
         i = 0
         j = len(string)-1
         while i<j:
@@ -151,7 +150,20 @@ class Basics:
                 i+=1
                 j-=1
         return ''.join(arr)    
+    
+    def movesZeroesToTheEnd(self,nums):
+        i = 0 
+        for num in nums:
+            if(num!=0):
+                nums[i] = num
+                i += 1
+        
+        for j in range(i,len(nums)):
+            nums[j] = 0
+        
+        return nums
+
 
 obj = Basics()
-z = obj.reverseOnlyEnglishLetters("a-bc-dEf-ghIj")
+z = obj.movesZeroesToTheEnd([0,1,0,3,12])
 print(z)
