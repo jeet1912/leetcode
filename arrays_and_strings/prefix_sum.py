@@ -53,22 +53,19 @@ class PrefixSum:
         k = 1
         while(True):
             is_valid = True
-            pref_sum = nums[0] + k
-            for i in range(1,len(nums)):
-                pref_sum += nums[i]
-                print(pref_sum)
-                if(pref_sum<1):
+            total = k
+            for i in range(0,len(nums)):
+                total += nums[i]
+                if(total<1):
                     is_valid = False
                     break
             if(is_valid):
-                print('Is valid ',k)
                 return k
             else:
-                print('is invalid')
                 k+=1
-                print(k)
+
                     
                     
 ps = PrefixSum()
-t = ps.minKforPositiveSum([-3,2,-3,4,2])
+t = ps.minKforPositiveSum([-3,6,2,5,8,6])
 print(t)
