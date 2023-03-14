@@ -108,6 +108,31 @@ class Basics:
                 return [p[rem], i]
             p[val] = i
 
+    # Given a string s, reverse the order of characters in each word 
+    # within a sentence while still preserving whitespace and initial word order.
+
+    def reverseString(self,string):
+        strings = string.split(' ')
+        reversed_sentence = ''
+        print('Strings ', strings)
+        for index, word in enumerate(strings):
+            arr = []
+            for c in word:
+                arr.append(c)    
+            i = 0
+            j = len(arr) - 1
+            while i<j:
+                arr[i],arr[j] = arr[j],arr[i]
+                i+=1
+                j-=1
+            reversed_word= ''.join(arr)
+            if(index!=len(strings)-1):
+                reversed_sentence += reversed_word + ' '
+            else:
+                reversed_sentence += reversed_word
+            
+        return reversed_sentence
+
 obj = Basics()
-z = obj.two_sum([1,5,4,3],6)
+z = obj.reverseString("Let's take leetcode contest")
 print(z)
