@@ -47,7 +47,28 @@ class PrefixSum:
         for i in range(1,len(nums)):
             prefix_sum.append(nums[i] + prefix_sum[-1])
         return prefix_sum
-
+    
+    # min value of k, i.e, initial value added to get positive step by step sum
+    def minKforPositiveSum(self,nums):
+        k = 1
+        while(True):
+            is_valid = True
+            pref_sum = nums[0] + k
+            for i in range(1,len(nums)):
+                pref_sum += nums[i]
+                print(pref_sum)
+                if(pref_sum<1):
+                    is_valid = False
+                    break
+            if(is_valid):
+                print('Is valid ',k)
+                return k
+            else:
+                print('is invalid')
+                k+=1
+                print(k)
+                    
+                    
 ps = PrefixSum()
-t = ps.runningSum([1, 6, 3, 2, 7, 2])
+t = ps.minKforPositiveSum([-3,2,-3,4,2])
 print(t)
