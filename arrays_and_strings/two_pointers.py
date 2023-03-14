@@ -113,7 +113,7 @@ class Basics:
 
     def reverseString(self,string):
         strings = string.split(' ')
-        reversed_sentence = ''
+        sentence = ''
         print('Strings ', strings)
         for index, word in enumerate(strings):
             arr = []
@@ -127,11 +127,11 @@ class Basics:
                 j-=1
             reversed_word= ''.join(arr)
             if(index!=len(strings)-1):
-                reversed_sentence += reversed_word + ' '
+                sentence += reversed_word + ' '
             else:
-                reversed_sentence += reversed_word
+                sentence += reversed_word
             
-        return reversed_sentence
+        return sentence
 
 obj = Basics()
 z = obj.reverseString("Let's take leetcode contest")
