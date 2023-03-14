@@ -130,9 +130,28 @@ class Basics:
                 sentence += reversed_word + ' '
             else:
                 sentence += reversed_word
-            
         return sentence
+    
+    def reverseOnlyEnglishLetters(self,string):
+        arr = list(string)
+        print("Check ",arr)
+        i = 0
+        j = len(string)-1
+        while i<j:
+            print("type check ",type(arr[i]))
+            if(arr[i].isalpha() and arr[j].isalpha()) :
+                arr[i],arr[j] = arr[j],arr[i]
+                i+=1
+                j-=1
+            elif (arr[j].isalpha() and arr[i].isalpha ()== False):
+                i+=1
+            elif (arr[i].isalpha() and arr[j].isalpha() == False):
+                j-=1
+            else:
+                i+=1
+                j-=1
+        return ''.join(arr)    
 
 obj = Basics()
-z = obj.reverseString("Let's take leetcode contest")
+z = obj.reverseOnlyEnglishLetters("a-bc-dEf-ghIj")
 print(z)
