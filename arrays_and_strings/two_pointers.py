@@ -160,10 +160,30 @@ class Basics:
         
         for j in range(i,len(nums)):
             nums[j] = 0
+
+# Given a 0-indexed string word and a character ch, reverse the segment of word that
+# starts at index 0 and ends at the index of the first occurrence of ch (inclusive). 
+# If the character ch does not exist in word, do nothing.
+    def reverseSegment(self,string,ch):
+        if ch not in string:
+            return string
+        arr = list(string)
+        i = j = 0
+        length = len(arr)
+        while j<length and arr[j]!=ch:
+            j+=1
+        while i<j:
+            arr[i],arr[j] = arr[j],arr[i]
+            i+=1
+            j-=1
+        return "".join(arr)   
         
-        return nums
+        
+        return "".join(arr)
+
+
 
 
 obj = Basics()
-z = obj.movesZeroesToTheEnd([0,1,0,3,12])
+z = obj.reverseSegment('abcdef','d')
 print(z)
