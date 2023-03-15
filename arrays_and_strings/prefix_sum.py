@@ -65,8 +65,48 @@ class PrefixSum:
             else:
                 k+=1
 
-                    
-                    
+    # Given net gain as an array, find the highest altitude
+    # max prefix sum
+    def highestAltitude(self,nums):
+        """
+            net_altitude = [0]
+            for i in range(0,len(nums)):
+                net_altitude.append(nums[i] + net_altitude[-1])
+            return max(net_altitude)
+        """
+        net_altitude = 0
+        sol = 0
+        for i in nums:
+            net_altitude += i
+            sol = max(sol,net_altitude)
+        return sol
+
+    # Find pivot index
+    # The pivot index is the index 
+    # where the sum of all the numbers strictly to the left of the index is 
+    # equal to the sum of all the numbers strictly to the index's right.
+    def findPivotIndex(self,nums):
+        right_sum = sum(nums)
+        left_sum = 0
+        for i, val in enumerate(nums):
+            right_sum = right_sum - val
+            if left_sum == right_sum : 
+                return i
+            left_sum += val
+        return -1
+    
+    """
+    class NumArray:
+
+    def __init__(self, nums: List[int]):
+        self.prefix_sum = [0]*(len(nums) + 1)
+        for i in range(len(nums)):
+            self.prefix_sum[i+1] = nums[i] + self.prefix_sum[i]
+
+    def sumRange(self, left: int, right: int) -> int:
+        return self.prefix_sum[right+1] - self.prefix_sum[left]  
+    """
+
 ps = PrefixSum()
-t = ps.minKforPositiveSum([-3,6,2,5,8,6])
+t = ps.findPivotIndex([1,7,3,6,5,6])
 print(t)
