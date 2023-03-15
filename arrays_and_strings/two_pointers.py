@@ -178,12 +178,6 @@ class Basics:
             j-=1
         return "".join(arr)   
         
-        
-        return "".join(arr)
-
-
-
-
 obj = Basics()
 z = obj.reverseSegment('abcdef','d')
 print(z)

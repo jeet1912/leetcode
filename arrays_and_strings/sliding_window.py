@@ -77,7 +77,7 @@ class SlidingWindow:
             avg = max(avg,sum/k)
         return avg
 
-    #Given a binary array nums and an integer k, 
+    # Given a binary array nums and an integer k, 
     # return the maximum number of consecutive 1's in the array if you can flip at most k 0's    
     
     def practiceProb2(self, nums: list[int], k:int) -> int:
@@ -91,7 +91,22 @@ class SlidingWindow:
                 l+=1
             ans = max(ans, r-l+1)
         return ans
+    
+    # Given an array of positive integers nums and a positive integer target,
+    # return the minimal length of a subarray whose sum is greater than or equal to target.
+    # If there is no such subarray, return 0 instead.
+    def practiceProb3(self,nums,k):
+        min_length = float('inf')
+        left = cur_sum = 0
+        for i in range(len(nums)):
+            cur_sum += nums[i]
+            while cur_sum >= k:
+                min_length = min(min_length,i-left+1)
+                cur_sum -= nums[left]
+                left+=1
+
+        return min_length if min_length != float('inf') else 0
 
 sw = SlidingWindow()
-l = sw.practiceProb2(nums=[0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1],k=3)
+l = sw.practiceProb3([2,3,1,2,4,3],7)
 print(l)
