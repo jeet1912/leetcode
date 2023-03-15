@@ -24,8 +24,8 @@ class PrefixSum:
             prefix_sum.append(nums[i] + prefix_sum[-1])
         ans = 0
         for r in range(len(nums)-1):
-            left_sum = prefix_sum[i]
-            right_sum = prefix_sum[-1] - prefix_sum[i]
+            left_sum = prefix_sum[r]
+            right_sum = prefix_sum[-1] - prefix_sum[r]
             if left_sum >= right_sum:
                 ans+=1
         return ans
@@ -40,6 +40,7 @@ class PrefixSum:
             right_sum = total - left_sum
             if left_sum >= right_sum:
                 ans +=1
+        return ans
 
     # running sum
     def runningSum(self,nums):
