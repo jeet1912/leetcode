@@ -106,7 +106,21 @@ class SlidingWindow:
                 left+=1
 
         return min_length if min_length != float('inf') else 0
+    
+    # Given a string s and an integer k, 
+    # return the maximum number of vowel letters in any substring of s with length k.
+    def practiceProb4(self,string,k):
+        vowels = {"a","e","i","o","u"}
+        count = ans = 0
+        for i,val in enumerate(string):
+            if val in vowels:
+                count += 1
+            if i>=k and string[i-k] in vowels:
+                count -= 1
+
+            ans = max(count,ans)
+        return ans
 
 sw = SlidingWindow()
-l = sw.practiceProb3([2,3,1,2,4,3],7)
+l = sw.practiceProb4("leetcode",3)
 print(l)
