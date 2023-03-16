@@ -124,11 +124,7 @@ class Miscellaneous:
             p[char] = index
             ans = max(ans,index-l+1)
         return ans
-
-            
-        
-
-        
+    
 m = Miscellaneous()
 y = m.lengthOfLongestSubstring('abcabc')
 print(y)

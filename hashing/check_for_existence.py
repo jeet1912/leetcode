@@ -1,3 +1,4 @@
+from collections import Counter
 class Hashing:
     def two_sum(self,nums,k):
         p = dict()
@@ -58,7 +59,47 @@ class Hashing:
             if val + 1 in nums:
                 c+=1
         return c
+    
+    # return true if a value appears atleast twice in an array
+    def practiceProb1(self,nums):
+        p = set()
+        for val in nums:
+            if val in p:
+                return True
+            p.add(val)
+        return False
+    
+    def destinationCity(self,paths):
+        s = set([p[0] for p in paths])
+        for city,dest in paths:
+            if dest not in s:
+                return dest
 
+    # Given a string path, where path[i] = 'N', 'S', 'E' or 'W',
+    # each representing moving one unit north, south, east, or west, respectively. 
+    # You start at the origin (0, 0) on a 2D plane and walk on the path specified by path.
+    # Return true if the path crosses itself at any point, that is,
+    # if at any time you are on a location you have previously visited. 
+    # Return false otherwise.
+
+    def pathCrossing(self,path):
+        x = 0
+        y = 0 
+        point = [[0,0]]
+        for char in path:
+            if char == 'N':
+                y+=1
+            elif char == 'S':
+                y-=1
+            elif char == 'E':
+                x+=1
+            else:
+                x-=1
+            if [x,y] in point:
+                return True
+            point.append([x,y])
+        return False
+           
 h = Hashing()
-o = h.isXplusOneThere([1,1,3,3,5,5,7,7])
+o = h.pathCrossing('NWSE')
 print(o)
