@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 class Counting:
     
@@ -139,6 +139,47 @@ class Counting:
                 val[char] = p[char]
         return min(val.values())
     
+    def sumOfUniqueElements(self, nums):
+        p = defaultdict(int)
+        for n in nums:
+            p[n] += 1
+        sum = 0
+        for key,val in p.items():
+            if val == 1:
+                sum += key   
+        return sum
+    
+    def luckyInteger(self,nums):
+        p = Counter(nums)
+        ans = []
+        for key,value in p.items():
+            if key == value:
+                ans.append(value)
+        if len(ans)>0:
+            return max(ans)
+        else:
+            return -1
+    
+    def uniqueOccurences(self,nums):
+        p = Counter(nums)
+        v = p.values()
+        set_v = set(v)
+        if len(set_v) == len(v):
+            return True
+        return False
+    
+    def sortByFrequency(self,s):
+        p = Counter(s)
+        sorted_p = sorted(p.items(), key=lambda x:x[1],reverse=True)
+        ans = []
+        for key,value in sorted_p:
+            ans.append(key*value)
+        return ''.join(ans)
+
+    # n[i] == n[j] for i < j
+    def goodPairs(self,nums):
+        return sum(k * (k - 1) / 2 for k in Counter(nums).values())
+    
 c = Counting()
-l = c.maxNoBaloons("balon")
+l = c.goodPairs([1])
 print(l)
