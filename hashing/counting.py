@@ -138,7 +138,7 @@ class Counting:
             else: 
                 val[char] = p[char]
         return min(val.values())
-
+    
 c = Counting()
 l = c.maxNoBaloons("balon")
 print(l)
