@@ -179,7 +179,12 @@ class Counting:
     # n[i] == n[j] for i < j
     def goodPairs(self,nums):
         return sum(k * (k - 1) / 2 for k in Counter(nums).values())
-    
+
+    # Given a binary array nums and an integer goal, 
+    # return the number of non-empty subarrays with a sum goal.    
+    def numSubArrayWithSum(self,nums):
+        pass
+
 c = Counting()
 l = c.goodPairs([1])
 print(l)
