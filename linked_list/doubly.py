@@ -52,6 +52,7 @@ def getSumUsingDummy(head):
         dummy = dummy.next     
     return ans
 
+# With sentinel nodes
 head = ListNode(None)
 tail = ListNode(None)
 head.next = tail
