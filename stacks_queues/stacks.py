@@ -51,9 +51,25 @@ class Stack:
         reqPath = '/' + '/'.join(stack)
         return reqPath
 
-    def makeGoodString(self,string):
-        pass
+    def makeStringGood(self,string):
+        stack = []
+        for c in string:
+            if stack and abs(ord(c) - ord(stack[-1])) == 32:
+                stack.pop()
+            else:
+                stack.append(c)
+        return ''.join(stack)
+            
+    def removeStarsFromString(self,s):
+        stack = []
+        for char in s:
+            if char == '*':
+                stack.pop()
+                continue
+            stack.append(char)
+        return ''.join(stack)
+
 
 stack = Stack()
-valid = stack.convertToCanonical('/home//foo/')
+valid = stack.removeStarsFromString('S*s*s')
 print(valid)
