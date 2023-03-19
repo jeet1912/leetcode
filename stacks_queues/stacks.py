@@ -69,7 +69,38 @@ class Stack:
             stack.append(char)
         return ''.join(stack)
 
+    # validate stack sequences
+
+    def validate(self,pushed: list,popped: list) -> bool:
+        s = []
+        i = 0
+        for c in pushed:
+            s.append(c)
+            while len(s)>0 and s[-1] == popped[i]:
+                s.pop()
+                i+=1
+        return len(s) == 0
+
+    # asteroid collision
+    # same sign -> never collide
+    # opposite sign -> smaller one explodes, larger remains as it is. If same, both explode.
+    def asteroidCollision(self,asteroids):
+        ans = []
+        for new in asteroids:
+            print('New ',new)
+            while ans and new < 0 < ans[-1]:
+                if ans[-1] < -new:
+                    print('popped',ans.pop())
+                    continue
+                elif ans[-1] == -new:
+                    print('popped',ans.pop())
+                break
+            else:
+                ans.append(new)
+                print('Ans ',ans)   
+            
+        return ans
 
 stack = Stack()
-valid = stack.removeStarsFromString('S*s*s')
+valid = stack.asteroidCollision([10,2,-5])
 print(valid)
