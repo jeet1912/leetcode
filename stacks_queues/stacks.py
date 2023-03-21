@@ -87,20 +87,25 @@ class Stack:
     def asteroidCollision(self,asteroids):
         ans = []
         for new in asteroids:
-            print('New ',new)
             while ans and new < 0 < ans[-1]:
                 if ans[-1] < -new:
-                    print('popped',ans.pop())
+                    ans.pop()
                     continue
                 elif ans[-1] == -new:
-                    print('popped',ans.pop())
+                    ans.pop()
                 break
             else:
                 ans.append(new)
-                print('Ans ',ans)   
-            
         return ans
+    
+    def robotWithString(self,s):
+        t = []
+        ans = []
+        for c in s:
+            t.append(c)
+
+
 
 stack = Stack()
-valid = stack.asteroidCollision([10,2,-5])
-print(valid)
+valid = stack.robotWithString('abc')
+#print(valid)

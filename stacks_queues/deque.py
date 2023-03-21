@@ -33,3 +33,4 @@ ma.next(1)
 ma.next(10)
 ma.next(3)
 print(ma.next(5))
+
