@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 
 def buildGraph(edges):
     d = defaultdict(list)
@@ -195,8 +195,164 @@ class Solution:
                     dfs(node)    
         dfs(0)
         return self.ans
+    
+    ## BFS and graphs ##
+
+    # clear path - path from (0,0) to (n-1,n-1), can move 8-directionally 
+    def shortestClearPathBinaryMatrix(self,grid: list[list[int]]) -> int :
+        if grid[0][0] == 1:
+            return -1
+        
+        def valid(row,col):
+            return 0<=row<n and 0<=col<n and grid[row][col] == 0
+        
+        n = len(grid)
+        seen = {(0,0)}
+        queue = deque([(0,0,1)]) # r,c and steps
+        directions = [(0,1),(1,0),(-1,0),(0,-1),(-1,-1),(1,1),(-1,1),(1,-1)]
+        while queue:
+            row, col, steps = queue.popleft()
+            if (row,col) == (n-1,n-1):
+                return steps
+            
+            for dx,dy in directions:
+                next_r, next_c = row + dy, col + dx
+                if valid(next_r, next_c) and (next_r,next_c) not in seen:
+                    seen.add((next_r,next_c))
+                    queue.append((next_r,next_c,steps+1))
+        return -1
+
+
+    # nodes at distance k from target node
+    # logic - convert bt to undirected graph 
+    def distanceK(self,root,target, k:int) -> list[int]:
+        def dfs(node,parent):
+            if not node:
+                return
+            node.parent = parent
+            dfs(node.left,node)
+            dfs(node.right,node)
+        
+        dfs(root,None)
+        queue = deque([target])
+        seen = {target}
+        distance = 0
+
+        while queue and distance<k:
+            curr_length = len(queue)
+            for _ in range(curr_length):
+                node = queue.popleft()
+                for neighbor in [node.left, node.right, node.parent]:
+                    if neighbor and neighbor not in seen:
+                        seen.add(neighbor)
+                        queue.append(neighbor)
+            distance += 1
+        return [node.val for node in queue]
+    
+    
+    
+    def updateMat(self, mat:list[list[int]]) -> list[list[int]]:
+
+        def isValid(r,c):
+            return 0<=r<n and 0<=c<n
+
+        m = len(mat)
+        n = len(mat[0])
+        queue = deque()
+        seen = set()
+
+        for row in range(m):
+            for col in range(n):
+                if mat[row][col] == 0:
+                    queue.append((row,col,1))
+                    seen.add((row,col))
+        
+        directions = [ (0,1),(1,0),(0,-1),(-1,0)]
+        while queue:
+            row, col, steps = queue.popleft()
+            for dx, dy in directions:
+                new_r, new_c = row + dy, col + dx
+                if isValid(new_r,new_c) and (new_r,new_c) not in seen:
+                    seen.add((new_r,new_c))
+                    queue.append((new_r,new_c,steps+1))
+                    mat[new_r,new_c] = steps
+        return mat
+    
+    
+    def shortestPathWithKObstacles(self, grid: list[list[int]], k:int) -> int:
+        def valid(row,col):
+            return 0<=row<m and 0<=col<n
+        
+        m = len(grid)
+        n = len(grid[0])
+        seen = {(0,0,k)}
+        queue = deque([(0,0,k,0)]) # r,c, remain and steps
+        directions = [(0,1),(1,0),(-1,0),(0,-1)]
+        while queue:
+            row, col, remain, steps = queue.popleft()
+            if (row,col) == (m-1,n-1):
+                return steps
+            
+            for dx,dy in directions:
+                next_r, next_c = row + dy, col + dx
+                if valid(next_r, next_c):
+                    if grid[next_r,next_c] == 0:
+                        if (next_r,next_c,remain) not in seen:
+                            seen.add((next_r,next_c,remain))
+                            queue.append(next_r,next_c,remain,steps+1)
+                elif remain and (next_r,next_c,remain-1) not in seen:
+                            seen.add((next_r,next_c,remain-1))
+                            queue.append((next_r,next_c,remain-1,steps+1))
+        return -1 
+
+            
+    def shortestAlternatingPaths(self, n: int, redEdges: list[list[int]], blueEdges: list[list[int]]) -> list[int]:
+        RED = 0
+        BLUE = 1
+        graph = defaultdict(lambda:defaultdict(list))
+        for x,y in redEdges:
+            graph[RED][x].append(y)
+        for x,y in blueEdges:
+            graph[BLUE][x].append(y)
+        
+        ans = [float('inf')]*n
+        seen = {(0,RED),(0,BLUE)}
+        queue = deque([(0,RED,0),(0,BLUE,0)])
+
+        while queue:
+            node, color, steps = queue.popleft()
+            ans[node] = min(ans[node],steps)
+            for neighbor in graph[color][node]:
+                if (neighbor, 1 - color) not in seen:
+                    seen.add((neighbor,1-color))
+                    queue.append((neighbor,1-color,steps+1))
+        
+        return [x if x!=float('inf') else -1 for x in ans]
+
+    def nearestExit(self, maze: list[list[str]], entrance: list[int]) -> int:
+        
+        def valid(row,col):
+                return 0<=row<m and 0<=col<n
+        
+        m = len(maze)
+        n = len(maze[0])
+        seen = {(entrance[0],entrance[1])}
+        queue = deque()
+        queue.append([entrance[0],entrance[1],0])
+        directions = [(0,1),(0,-1),(1,0),(-1,0)]
+    
+        while queue:
+            r,c,steps = queue.popleft()
+            for dx, dy in directions:
+                new_r, new_c = r + dy, c + dx
+                if valid(new_r,new_c) and maze[new_r][new_c] == '.' and (new_r,new_c) not in seen:
+                    if(new_r == 0 or new_r == m-1) or (new_c == 0 or new_c == n-1):
+                        return steps + 1
+                    seen.add((new_r,new_c))
+                    queue.append([new_r,new_c,steps+1])
+        return -1
 
 
 s = Solution()
-g = s.maxAreaOfIsland(grid=[[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]])
+g = s.shortestAlternatingPaths(n = 3, redEdges = [[0,1],[1,2]], blueEdges = [])
 print('Final ans ',g)
