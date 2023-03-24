@@ -352,7 +352,35 @@ class Solution:
                     queue.append([new_r,new_c,steps+1])
         return -1
 
+   
+    def openTheLock(self, deadends: list[str], target: str) -> int:
+        
+        def neighbors(node):
+            ans = []
+            for i in range(4):
+                num = int(node[i])
+                for change in [-1,1]:
+                    x = (num+change)%10
+                    ans.append(node[:i] + str(x) + node[i+1:])
+            return ans
+
+        if "0000" in deadends:
+            return -1
+        
+        queue = deque([("0000",0)])
+        seen = set(deadends)
+        seen.add("0000")
+
+        while queue:
+            lock, steps = queue.popleft()
+            if lock == target:
+                return steps
+            for neighbor in neighbors(lock):
+                if neighbor not in seen:
+                    seen.add(neighbor)
+                    queue.append((neighbor,steps+1))
+        return -1
 
 s = Solution()
-g = s.shortestAlternatingPaths(n = 3, redEdges = [[0,1],[1,2]], blueEdges = [])
+g = s.openTheLock(deadends = ["0201","0101","0102","1212","2002"], target = "0202")
 print('Final ans ',g)
