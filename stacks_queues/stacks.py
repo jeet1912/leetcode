@@ -20,10 +20,10 @@ class Stack:
     def removeAdjDuplicates(self,s):
         stack = []
         for c in s:
-            if c not in stack:
+            if stack and c == stack[-1]:
+                stack.pop()
+            else:
                 stack.append(c)
-            elif stack.pop() == c:
-                continue
         return ''.join(stack)
 
     def backspaceCompare(self,s,t):

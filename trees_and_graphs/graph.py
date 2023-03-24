@@ -381,6 +381,8 @@ class Solution:
                     queue.append((neighbor,steps+1))
         return -1
 
+    
+
 s = Solution()
 g = s.openTheLock(deadends = ["0201","0101","0102","1212","2002"], target = "0202")
 print('Final ans ',g)
