@@ -83,13 +83,11 @@ class Solution:
         
         def binarySearch(arr,target):
             l = 0
-            r = len(arr) - 1
-            while l<=r:
+            r = len(arr) 
+            while l<r:
                 mid = (l+r)//2
-                if arr[mid] == target:
-                    return mid
                 if arr[mid] > target:
-                    r = mid - 1
+                    r = mid
                 else:
                     l = mid + 1
             return l
