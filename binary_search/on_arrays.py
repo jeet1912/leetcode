@@ -1,3 +1,4 @@
+import bisect
 class Solution:
 
     # Given an array of integers nums which is sorted in ascending order, 
@@ -61,10 +62,56 @@ class Solution:
             ans.append(m-i) 
         return ans
     # (m+n)logm
-       
-       
+
+    # Longest subsequence within limit
+    # task is to find for each query in queries, the 
+    # maximum size of a subsequence we can pick so that 
+    # the sum of its elements does not exceed query
+    def answerQueries(self, nums: list[int], queries: list[int]) -> list[int]:
+        ans = [0]*len(queries)
+        nums.sort()                             #nlogn
+        for index, query in enumerate(queries): 
+            for num in nums:                    #m*n
+                if num <= query:
+                    query -= num
+                    ans[index] += 1
+                else:
+                    break        
+        return ans                              # n*(logn+m)
+
+    def answerQueries2(self, nums: list[int], queries: list[int]) -> list[int]:
+        
+        def binarySearch(arr,target):
+            l = 0
+            r = len(arr) - 1
+            while l<=r:
+                mid = (l+r)//2
+                if arr[mid] == target:
+                    return mid
+                if arr[mid] > target:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+            return l
+
+        nums.sort()
+        for i in range(1, len(nums)):
+            nums[i] += nums[i - 1]
+        
+        answer = []
+        
+        # For each query, find its insertion index to the prefix sum array.
+        for query in queries:
+            #index = bisect.bisect_right(nums, query)
+            index = binarySearch(nums,query)
+            answer.append(index)
+            
+        return answer
+        
+        
+
                    
     
 s = Solution()
-ans = s.successfulPairs(spells = [3,1,2], potions = [8,5,8], success = 16)
+ans = s.answerQueries2(nums = [4,5,2,1], queries = [3,10,21])
 print(ans)
