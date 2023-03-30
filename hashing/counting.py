@@ -16,7 +16,7 @@ class Counting:
             ans = max(ans,r-l+1)
         return ans
 
-    # Time complexity - O(1)
+    # Time complexity - O(n), where n is length of strength
     # Space compleity - O(k)
 
     # Intersection of all arrays 
