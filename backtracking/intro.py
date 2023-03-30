@@ -47,9 +47,54 @@ class Solution:
         ans = []
         backtrack([],1)
         return ans
-
-            
     
+    def allPathsFromSourceTarget(self, graph: list[list[int]]) -> list[list[int]]:
+        
+        def backtracking(curr_node,path):
+            print('Curr ',curr_node)
+            if curr_node == l:
+                ans.append(list(path))
+                return
+            
+            for next_node in graph[curr_node]:
+                path.append(next_node)
+                print('Path ',path)
+                backtracking(next_node,path)
+                c = path.pop()
+                print('Popped ',c)
+            
+        l = len(graph) - 1    
+        ans = []
+        path = [0]
+        backtracking(0,path)
+        return ans
+
+    def letterCombinations(self, digits:str) -> list[str]:
+
+        if len(digits) == 0:
+            return []
+        
+        digits_to_letters = {"2" : "abc","3" : "def", "4": "ghi", "5": "jkl","6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz"}
+        
+        def backtracking(index,path):
+            if len(path) == len(digits):
+                ans.append(''.join(path))
+                return
+            
+            possible_letters = digits_to_letters[digits[index]]
+            for letter in possible_letters:
+                path.append(letter)
+                #print('Path ',path)
+                backtracking(index+1,path)
+                path.pop()
+
+        ans = []
+        backtracking(0,[])
+        return ans
+    
+    #def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
+
+
 s = Solution()
-ans = s.combine(n=4, k = 2)
+ans = s.letterCombinations("23")
 print(ans)
