@@ -40,15 +40,18 @@ class SlidingWindow:
     def numsubarrayProducLessThanK(self, nums : list[int], k : int) -> int:
         if k <= 1:
             return 0
-        prod = 1
-        l = ans = 0
-        for r in range(len(nums)):
-            prod *= nums[r]
-            if prod >= k:
-                prod //= nums[l]
-                l+=1    
-            ans += r-l+1
-        return ans 
+
+        ans = left = 0
+        curr = 1
+
+        for right in range(len(nums)):
+            curr *= nums[right]
+            while curr >= k:
+                curr //= nums[left]
+                left += 1
+            ans += right - left + 1
+
+        return ans
     
     # Given an integer array nums and an integer k, find the sum of the subarray 
     # with the largest sum whose length is k.    

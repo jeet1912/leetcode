@@ -87,9 +87,29 @@ class Solution:
                     dp[i] = max(dp[j] + 1, dp[i])
         return max(dp)
 
+    def mostPoints(self, nums: list[list[int]]) -> int:
+        @cache
+        def dp(i):
+            if i >= len(nums):
+                return 0
+            j = i + nums[i][1] + 1
+            return max(dp(i+1),dp(j)+nums[i][0])
+        return dp(0)
                 
+    def climbingStairs(self, nums: int) -> int:
+        def dp(n):
+            if n == 1:
+                return 1
+            if n == 2:
+                return 2
+            if n in memo:
+                return memo[n]
+            memo[n] = dp(n-1) + dp(n-2)
+            return memo[n]
+        memo = {}
+        return dp(nums)
 
 memo = {}      # for fibbo, top-down
 s = Solution()
-ans = s.longestIncreasingSubsequence([10,9,2,5,3,7,101,18])
+ans = s.climbingStairs(3)
 print(ans)
