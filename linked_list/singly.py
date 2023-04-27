@@ -19,6 +19,9 @@ def get_sumSL(head):
         dummy = dummy.next
     return sum
 
+# in the above examples, we've a reference to the element at i-1 to add or delete element at i, which is unlikely in problems. 
+# Here it is O(1) but we usually traverse from the head, making it O(n).
+
 def recursiveSumSl(head):
     if not head:
         return 0
@@ -34,7 +37,7 @@ def getMiddle(head):
     return slow.value
 
 # return middle elements
-def getMiddle(head):
+def getMiddleElement(head):
     fast = head
     slow = head
     while fast and fast.next:
@@ -51,13 +54,6 @@ def removeDup(head):
         else:
             curr = curr.next
     return head
-
-def reverseList(head):
-    prev = None
-    curr = head
-    while curr:
-        c
-
     
 # Given the head of a linked list, determine if the linked list has a cycle.    
 def hasCycle(head):
@@ -68,6 +64,17 @@ def hasCycle(head):
         fast = fast.next.next
         if slow == fast:
             return True
+    return False
+
+#using hashing
+def hasCycleHashing(head):
+    seen = set()
+    while head:
+        if head in seen:
+            return True
+        seen.add(head)
+        head = head.next
+    return False
 
 # Given the head of a linked list and an integer k, return the kth node from end
 def kFromEnd(head,k):
@@ -90,8 +97,11 @@ def reverseList(head):
         curr = next_node
     return prev
 
-def swapInPairs():
-    pass
+def swapPairs(head):
+    if not head or not head.next:
+        return head
+    
+    
 
 one = LinkedNode(1)
 two = LinkedNode(2)

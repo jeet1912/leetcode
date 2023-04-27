@@ -53,7 +53,7 @@ class Counting:
     # Subarray sums equal to K in O(n) time complexity
     def subArraysWithSumK(self, nums,k):
         p = defaultdict(int)
-        p[0] = 1
+        p[0] = 1                            #empty sub-array
         curr = ans = 0
         for r in nums:
             curr += r
