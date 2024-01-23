@@ -177,7 +177,19 @@ class Basics:
             i+=1
             j-=1
         return "".join(arr)   
-        
-obj = Basics()
-z = obj.reverseSegment('abcdef','d')
-print(z)
+    
+    def removeDuplicatesInPlaceFromSortedArray(self, nums):
+        l = 0
+        r = 1
+        while l<=r and r<len(nums):
+            if (nums[l] == nums[r]):
+                r+=1
+            else:
+                nums[l+1] = nums[r]
+                l+=1
+        return l+1
+
+   
+#obj = Basics()
+#z = obj
+#print(z)
