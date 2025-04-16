@@ -1,5 +1,6 @@
 
 class Recursion: 
+    
 
     def iterative(n):
         for i in range(n):
@@ -18,14 +19,27 @@ class Recursion:
     # whose solutions can then be combined to solve the original problem.
 
     def fibonacci(self,n):
-        if n <= 1:
+        if n <=1:
             return n
-        else:
-            return self.fibonacci(n-1) + self.fibonacci(n-2)
+        print(f"n is {n}")
+        a = self.fibonacci(n-1)
+        print(f"n is {n}, a is {a}")
+        b = self.fibonacci(n-2)
+        print(f"n is {n}, b is {b}")
+        return a + b
 
+    def factorial(self, n):
+        if n == 0:
+            return 1
+        print(f"n is {n}")
+        a = self.factorial(n-1)
+        print(f"n is {n}, a is {a}")
+        prod = n * a
+        return prod
+    
 r = Recursion()
-print(r.fibonacci(4))
-        
+#print(r.fibonacci(3))
+print(r.factorial(3))       
 
 
 
