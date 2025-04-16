@@ -11,7 +11,7 @@ if __name__ == "__main__":
             return
         print(n)
         recursive(n+1)
-        print("is it here")
+        print("what is the value of n? ", n)
 
     #iterative(10)
-    recursive(1)
+    recursive(0)
