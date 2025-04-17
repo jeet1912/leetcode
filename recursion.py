@@ -31,7 +31,6 @@ class Recursion:
     def factorial(self, n):
         if n == 0:
             return 1
-        print(f"n is {n}")
         a = self.factorial(n-1)
         print(f"n is {n}, a is {a}")
         prod = n * a
@@ -39,7 +38,7 @@ class Recursion:
     
 r = Recursion()
 #print(r.fibonacci(3))
-print(r.factorial(3))       
+print(r.factorial(2))       
 
 
 
