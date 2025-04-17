@@ -27,5 +27,29 @@ class Basics:
     # Time complexity is O(n)
     # Space complexity is O(1)
 
+    def sortedArraysFromTwoSorted(self, num1: list[int], num2: list[int]) -> list[int]:
+        i = 0
+        j = 0
+        result = []
+        while i < len(num1) and j < len(num2):
+            if num1[i] < num2[j]:
+                result.append(num1[i])
+                i += 1
+            else :
+                result.append(num2[j])
+                j += 1
+        
+        while i < len(num1):
+            result.append(num1[i])
+            i += 1
+        
+        while j < len(num2):
+            result.append(num2[j])
+            j += 1
+        return result
+    # Time complexity is O(n)
+    # Space complexity is O(n)
+
+
 b = Basics()
 print(b.sortedTwoSum([1,2,4,6,8,9,14,15], 13))
