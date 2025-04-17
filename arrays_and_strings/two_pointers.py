@@ -31,6 +31,7 @@ class Basics:
         i = 0
         j = 0
         result = []
+        
         while i < len(num1) and j < len(num2):
             if num1[i] < num2[j]:
                 result.append(num1[i])
@@ -48,7 +49,7 @@ class Basics:
             j += 1
         return result
     # Time complexity is O(n)
-    # Space complexity is O(n)
+    # Space complexity is O(1) (not counting the result array)
 
 
 b = Basics()
