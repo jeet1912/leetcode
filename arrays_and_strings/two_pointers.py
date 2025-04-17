@@ -51,6 +51,16 @@ class Basics:
     # Time complexity is O(n)
     # Space complexity is O(1) (not counting the result array)
 
+    def isSubsequence(self, s: str, t: str) -> bool:
+        i = 0
+        j = 0
+        while i < len(s)and j < len(t):
+            if s[i] == t[j]:
+                i+=1
+            j+=1
+        return i == len(s)
+    # Time complexity is O(n)
+    # Space complexity is O(1)
 
 b = Basics()
 print(b.sortedTwoSum([1,2,4,6,8,9,14,15], 13))
