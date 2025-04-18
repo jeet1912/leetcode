@@ -62,5 +62,27 @@ class Basics:
     # Time complexity is O(n)
     # Space complexity is O(1)
 
+    def reverseString(self, s: list[str]) -> None:
+        i = 0
+        j = len(s) - 1
+        while i < j:
+            s[i], s[j] = s[j], s[i]
+            i += 1
+            j -= 1
+        return s
+    # Time complexity is O(n)
+    # Space complexity is O(1)
+    def reverseWords(self, s: str) -> str:
+        s = s.split()
+        i = 0
+        j = len(s) - 1
+        while i < j:
+            s[i], s[j] = s[j], s[i]
+            i += 1
+            j -= 1
+        return ' '.join(s)  
+    # Time complexity is O(n)
+    # Space complexity is O(1)
+
 b = Basics()
 print(b.sortedTwoSum([1,2,4,6,8,9,14,15], 13))
