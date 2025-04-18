@@ -101,7 +101,5 @@ class Basics:
         return sorted
     # Time complexity is O(n)
     # Space complexity is O(n)
-
-    #another attempt
 b = Basics()
 print(b.sortedSquares([-4,-2,-1,0,6,8,9,14,15]))
