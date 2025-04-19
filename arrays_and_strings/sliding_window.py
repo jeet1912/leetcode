@@ -29,5 +29,20 @@ class SlidingWindow:
     # Time complexity is O(n)
     # Space complexity is O(1)
 
+    def numSubArrayProductLessThanK(self, nums: list[int], k: int) -> int:
+        if k <= 1:
+            return 0
+        
+        l = ans = 0
+        prod = 1
+        for r in range(len(nums)):
+            prod *= nums[r]
+            while prod>= k:
+                prod //= nums[l]
+                l += 1
+            ans += r-l+1
+        return ans 
+
 s = SlidingWindow()
-print(s.question2([1,1,0,0,1,0,1,1]))
+print(s.numSubArrayProductLessThanK([10,5,2,6],k=100))
+
