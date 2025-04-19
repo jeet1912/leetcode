@@ -84,7 +84,7 @@ class Basics:
     # Time complexity is O(n)
     # Space complexity is O(1)
 
-    def sortedSquares(self, nums: list[int]) -> list[int]:
+    def sortedSquaresAsc(self, nums: list[int]) -> list[int]:
         nums = [n**2 for n in nums]
         sorted = [0]*len(nums)
         k = 0
@@ -102,6 +102,23 @@ class Basics:
     # Time complexity is O(n)
     # Space complexity is O(n)
 
-    
+    def sortedSquaresDesc(self, nums: list[int]) -> list[int]:
+        nums = [n**2 for n in nums]
+        sorted = [0]*len(nums)
+        k = 0
+        j = len(nums) - 1
+        value = 0
+        for i in range(len(nums)):
+            if abs(nums[k]) > abs(nums[j]):
+                value = nums[k]
+                k += 1
+            else:
+                value = nums[j]
+                j -= 1
+            sorted[i] = value**2
+        return sorted
+
+
+
 b = Basics()
-print(b.sortedSquares([-4,-2,-1,0,6,8,9,14,15]))
+print(b.sortedSquaresDesc([-4,-2,-1,0,6,8,9,14,15]))
