@@ -54,6 +54,19 @@ class SlidingWindow:
             curr += nums[i] - nums[i-k]
             max_sum = max(max_sum, curr)
         return max_sum
+    
+    def findMaxAverage(self, nums: list[int], k: int) -> float:
+        currSum = currAvg = 0
+        for i in range(k):
+            currSum += nums[i]
+        currAvg = currSum / k
+        for i in range(k,len(nums)):
+            currSum += nums[i]
+            currSum -= nums[i-k]
+            currAvg = max(currAvg, currSum / k)
+        return currAvg
+            
+            
 
 s = SlidingWindow()
 print(s.largestSumSubArray([10,5,2,6],k=3))
