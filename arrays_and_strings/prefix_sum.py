@@ -53,7 +53,24 @@ class PrefixSum:
         if minPre > 0:
             return 1
         else:
-            return -minPre + 1     
+            return -minPre + 1  
+        
+
+    def getAverages(self, nums: list[int], k: int) -> list[int]:
+        n = len(nums)
+        avg = [-1] * n
+        if 2 * k + 1 > n:
+            return avg
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + nums[i]
+        print("prefix ", prefix)
+        for i in range(k, n - k):
+            print("prefixes ", prefix[i + k + 1], prefix[i - k])
+            total = prefix[i + k + 1] - prefix[i - k]
+            avg[i] = total // (2 * k + 1)
+        return avg
+
     
 ps = PrefixSum()
-print(ps.question2b([10,4,-8,7]))
+print(ps.getAverages(nums = [7,4,3,9,1,8,5,2,6], k = 3))
