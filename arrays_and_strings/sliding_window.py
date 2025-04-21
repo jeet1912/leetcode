@@ -79,7 +79,20 @@ class SlidingWindow:
                 l += 1
             ans = max(ans, i-l+1)
         return ans
-            
+
+    def minSubArrayLen(self, target: int, nums: list[int]) -> int:
+        curr = 0
+        l = 0
+        ans = float('inf')
+        for i in range(len(nums)):
+            curr+=nums[i]
+            while curr >= target:
+                ans = min(ans,i-l+1)
+                curr -= nums[l]
+                l+=1
+        if ans == float('inf'):
+            return 0
+        return ans            
 
 s = SlidingWindow()
 print(s.largestSumSubArray([10,5,2,6],k=3))
