@@ -48,7 +48,7 @@ class Solution:
                 r -= 1
         return "".join(s)
     
-    def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
+    def getCommon(self, nums1: list[int], nums2: list[int]) -> int:
         l = 0
         r = 0 
         while l < len(nums1) and r < len(nums2):
@@ -59,9 +59,23 @@ class Solution:
             elif nums1[l] > nums2[r]:
                 r += 1
         return -1
-
+    
+    def moveZeroes(self, nums: list[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        l = temp = 0
+        for r in range(len(nums)):
+            if nums[r] != 0:
+                temp = nums[r]
+                nums[r] = nums[l]
+                nums[l] = temp
+                l += 1
+        return nums
+            
+   
     
 s = Solution()
-ans = s.reverseWords('leetcode rules')
+ans = s.moveZeroes([0,1,0,3,12])
 print(ans)
     
