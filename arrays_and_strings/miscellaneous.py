@@ -72,7 +72,19 @@ class Solution:
                 nums[l] = temp
                 l += 1
         return nums
-            
+    
+    def reversePrefix(self, word: str, ch: str) -> str:
+        l = r = 0
+        word = list(word)
+        for i in range(len(word)):
+            if word[r] == ch:
+                while l<r:
+                    word[l], word[r] = word[r], word[l]
+                    l += 1
+                    r -= 1
+                break 
+            r += 1
+        return "".join(word)
    
     
 s = Solution()
