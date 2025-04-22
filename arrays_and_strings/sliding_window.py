@@ -94,6 +94,25 @@ class SlidingWindow:
             return 0
         return ans            
 
+    def maxVowels(self, s: str, k: int) -> int:
+        vowels = ['a','e','i','o','u']
+        l = 0
+        s = list(s)
+        count = 0
+        maxCount = 0    
+        for i in range(k):
+            if s[i] in vowels:
+                count+=1
+        maxCount = max(maxCount,count)
+        for r in range(k,len(s)):
+            if s[l] in vowels:
+                count -= 1
+            if s[r] in vowels:
+                count += 1
+            maxCount = max(maxCount, count)
+            l+=1
+        return maxCount
+    
 s = SlidingWindow()
-print(s.largestSumSubArray([10,5,2,6],k=3))
+print(s.maxVowels("abciiidef",k=3))
 
