@@ -101,9 +101,22 @@ class Solution:
             i+=1
         return maxLength
 
+    def pivotIndex(self, nums: list[int]) -> int:
+        n = len(nums)
+        prefix = [0]*(n+1)
+        for i in range(n):
+            prefix[i+1] = prefix[i] + nums[i]
+
+        leftSum = rightSum = 0
+        for i in range(n):
+            leftSum = prefix[i]
+            rightSum = prefix[n] - prefix[i+1]
+            if leftSum == rightSum:
+                return i
+        return -1
    
     
 s = Solution()
-ans = s.equalSubstring(s="krrgw",t="zjxss",maxCost=19)
+ans = s.pivotIndex([1,2,3])
 print(ans)
     
