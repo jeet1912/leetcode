@@ -109,7 +109,7 @@ class SlidingWindow:
                 count -= 1
             if s[r] in vowels:
                 count += 1
-            maxCount = max(maxCount, count)
+                maxCount = max(maxCount, count)
             l+=1
         return maxCount
     

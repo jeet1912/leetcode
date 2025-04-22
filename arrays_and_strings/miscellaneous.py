@@ -85,9 +85,25 @@ class Solution:
                 break 
             r += 1
         return "".join(word)
+    
+    def equalSubstring(self, s: str, t: str, maxCost: int) -> int:
+        l = r = i = 0
+        s = list(s)
+        t = list(t)
+        cost = 0
+        maxLength = 0      
+        for r in range(len(t)):
+            cost += abs(ord(s[r])-ord(t[i]))    
+            while cost > maxCost:
+                cost -= abs(ord(s[l])-ord(t[l]))
+                l+=1
+            maxLength = max(maxLength,i-l+1)    
+            i+=1
+        return maxLength
+
    
     
 s = Solution()
-ans = s.moveZeroes([0,1,0,3,12])
+ans = s.equalSubstring(s="krrgw",t="zjxss",maxCost=19)
 print(ans)
     
