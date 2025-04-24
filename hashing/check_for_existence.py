@@ -53,8 +53,11 @@ class Hashing:
             if (nums[i] + 1) in nums:
                 count +=1
         return count
+    
+    def containsDuplicate(self, nums: list[int]) -> int:
+        return True if len(set(nums)) < len(nums) else False
 
 
 h = Hashing()
-print(h.countingElement([1,2,3])) 
+print(h.containsDuplicate([1,1,3])) 
 
