@@ -58,6 +58,17 @@ class Hashing:
         return True if len(set(nums)) < len(nums) else False
 
 
+    def destCity(self, paths: list[list[str]]) -> str:
+        sourceCities = {}
+        cities = ()
+        for path in paths:
+            sourceCities[path[0]] = path[1]
+            cities.add(path[0])
+            cities.add(path[1])
+        for city in cities:
+            if city not in sourceCities.keys():
+                return city
+
 h = Hashing()
 print(h.containsDuplicate([1,1,3])) 
 
