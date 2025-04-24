@@ -22,7 +22,7 @@ class Hashing:
             
     def question2(self, nums: list[int]) -> set:
         t = set()
-        for i in range(len(nums)):
+        for i in range(license(nums)):
             ele = nums[i]
             l = ele - 1
             r = ele + 1
@@ -31,7 +31,19 @@ class Hashing:
             t.add(ele)
         return t
             
+    def pangram(self, s: str) -> bool:
+        t = set()
+        s = list(s)
+        for char in s:
+            t.add(char)
+        if len(t) == 26:
+            return True
+        return False
+    
+    #def missingNumber(self, nums: list[int]) -> int:
+
+
 
 h = Hashing()
-print(h.question2([1,2,4,6,7])) 
+print(h.pangram("dog")) 
 
