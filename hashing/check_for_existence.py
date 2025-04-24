@@ -20,8 +20,18 @@ class Hashing:
             t.add(char)
         return ""
             
+    def question2(self, nums: list[int]) -> set:
+        t = set()
+        for i in range(len(nums)):
+            ele = nums[i]
+            l = ele - 1
+            r = ele + 1
+            if l in nums or r in nums:
+                continue
+            t.add(ele)
+        return t
             
 
 h = Hashing()
-print(h.question2("abba")) 
+print(h.question2([1,2,4,6,7])) 
 
