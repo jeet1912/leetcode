@@ -11,6 +11,17 @@ class Hashing:
     # Time complexity is O(n)
     # Space complexity is O(n)
            
+    def question2(self, s: str) -> str:
+        t = set()
+        s = list(s)
+        for char in s:
+            if char in t:
+                return char
+            t.add(char)
+        return ""
+            
+            
+
 h = Hashing()
-print(h.twoSum([2,7,11,15], 9)) # [0,1]
+print(h.question2("abba")) 
 
