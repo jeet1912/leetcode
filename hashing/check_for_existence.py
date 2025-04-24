@@ -40,10 +40,13 @@ class Hashing:
             return True
         return False
     
-    #def missingNumber(self, nums: list[int]) -> int:
-
+    def missingNumber(self, nums: list[int]) -> int:
+        l = len(nums)
+        for i in range(l+1):
+            if i not in nums:
+                return i
 
 
 h = Hashing()
-print(h.pangram("dog")) 
+print(h.missingNumber([0,1,2,3,4,6,7])) 
 
