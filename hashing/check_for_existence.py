@@ -45,8 +45,16 @@ class Hashing:
         for i in range(l+1):
             if i not in nums:
                 return i
+            
+    def countingElement(self, nums: list[int]) -> int:
+        l = len(nums)
+        count = 0
+        for i in range(l):
+            if (nums[i] + 1) in nums:
+                count +=1
+        return count
 
 
 h = Hashing()
-print(h.missingNumber([0,1,2,3,4,6,7])) 
+print(h.countingElement([1,2,3])) 
 
