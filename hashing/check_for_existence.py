@@ -60,7 +60,7 @@ class Hashing:
 
     def destCity(self, paths: list[list[str]]) -> str:
         sourceCities = {}
-        cities = ()
+        cities = set()
         for path in paths:
             sourceCities[path[0]] = path[1]
             cities.add(path[0])
@@ -69,6 +69,19 @@ class Hashing:
             if city not in sourceCities.keys():
                 return city
 
+    def isPathCrossing(self, path: str) -> bool:
+        directions = {"N": (0, 1), "S": (0, -1), "E": (1, 0), "W": (-1, 0)}
+        visited = {(0, 0)}
+        current_point = (0, 0)
+        for step in path:
+            dx, dy = directions[step]
+            current_point = (current_point[0] + dx, current_point[1] + dy)
+            if current_point in visited:
+                return True
+            visited.add(current_point)
+        return False
+
+
 h = Hashing()
-print(h.containsDuplicate([1,1,3])) 
+print(h.isPathCrossing("NESWW")) 
 
