@@ -24,8 +24,16 @@ class Counting:
                 if d[x] == len(nums):
                     intersection.append(x)
         return sorted(intersection)
+    
+    def equalOccurrances(self, s:str) -> bool:
+        d = defaultdict(int)
+        for char in s:
+            d[char] +=1
+        frequencies = set(d.values())
+        print("Frequencies ",frequencies)
+        return len(frequencies) == 1
 
-
-
+        
+            
 c = Counting()
-print(c.intersectionOfArrays([[3,1,2,4,5],[1,2,3,4],[3,4,5,6]]))
+print(c.equalOccurrances("aavsv"))
