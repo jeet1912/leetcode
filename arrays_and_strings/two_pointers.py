@@ -85,7 +85,6 @@ class Basics:
     # Space complexity is O(1)
 
     def sortedSquaresAsc(self, nums: list[int]) -> list[int]:
-        nums = [n**2 for n in nums]
         sorted = [0]*len(nums)
         k = 0
         j = len(nums) - 1
@@ -103,7 +102,6 @@ class Basics:
     # Space complexity is O(n)
 
     def sortedSquaresDesc(self, nums: list[int]) -> list[int]:
-        nums = [n**2 for n in nums]
         sorted = [0]*len(nums)
         k = 0
         j = len(nums) - 1
