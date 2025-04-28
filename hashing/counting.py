@@ -30,10 +30,21 @@ class Counting:
         for char in s:
             d[char] +=1
         frequencies = set(d.values())
-        print("Frequencies ",frequencies)
+        #print("Frequencies ",frequencies)
         return len(frequencies) == 1
+
+    def numberOfSubarraysWithSumK(self, nums: list[int], k: int) -> int:
+        d = defaultdict(int)
+        d[0] = 1
+        ans = curr = 0
+        for r in range(len(nums)):
+            curr += nums[r]
+            if curr - k in d.keys():
+                ans += d[curr-k]
+            d[curr] += 1
+        return ans
 
         
             
 c = Counting()
-print(c.equalOccurrances("aavsv"))
+print(c.numberOfSubarraysWithSumK(nums=[1,-1,1,-1],k=0))
