@@ -48,7 +48,7 @@ class Counting:
         d[0] = 1
         ans = curr = 0
         for num in nums:
-            curr += num % 2
+            curr += num % 2 # (1 - num%2 for even)
             ans += d[curr - k]
             d[curr] +=1
         return ans
