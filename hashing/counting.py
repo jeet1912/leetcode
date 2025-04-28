@@ -39,12 +39,21 @@ class Counting:
         ans = curr = 0
         for r in range(len(nums)):
             curr += nums[r]
-            if curr - k in d.keys():
-                ans += d[curr-k]
+            ans += d[curr-k]    
             d[curr] += 1
+        return ans
+
+    def numberOfSubArraysWithKOdd(self, nums:list[int], k:int) -> int:
+        d = defaultdict(int)
+        d[0] = 1
+        ans = curr = 0
+        for num in nums:
+            curr += num % 2
+            ans += d[curr - k]
+            d[curr] +=1
         return ans
 
         
             
 c = Counting()
-print(c.numberOfSubarraysWithSumK(nums=[1,-1,1,-1],k=0))
+print(c.numberOfSubarraysWithSumK(nums=[1,1,2,1,1],k=3))
