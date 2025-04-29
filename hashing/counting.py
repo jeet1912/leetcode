@@ -88,7 +88,15 @@ class Counting:
                 largest = num
         return largest
         
-        
+    def maxNumberOfBalloon(self, text: str) -> int:
+        occurrances = {"b":0, "a": 0, "l": 0, "o":0, "n":0}
+        for char in text:
+            if char in occurrances.keys():
+                occurrances[char] +=1
+        occurrances["l"] = occurrances["l"]//2
+        occurrances["o"] = occurrances["o"]//2
+        return min(occurrances.values())
+            
             
 c = Counting()
-print(c.largestUniqueNumber(nums=[5,7,3,9,4,9,8,3,1]))
+print(c.maxNumberOfBalloon(text="balon"))
