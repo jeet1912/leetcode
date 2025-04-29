@@ -71,9 +71,24 @@ class Counting:
         requiredLosers = sorted(requiredLosers)
         return [winners,requiredLosers]
 
-
+    
+    def largestUniqueNumber(self, nums: list[int]) -> int:
+        occurrances = defaultdict(int)
+        onlyOnce = []
+        for num in nums:
+            occurrances[num] += 1
+        for key, value in occurrances.items():
+            if value == 1:
+                onlyOnce.append(key)
+        if len(onlyOnce) == 0:
+            return -1
+        largest = 0
+        for num in onlyOnce:
+            if num > largest:
+                largest = num
+        return largest
         
         
             
 c = Counting()
-print(c.numberOfSubarraysWithSumK(nums=[1,1,2,1,1],k=3))
+print(c.largestUniqueNumber(nums=[5,7,3,9,4,9,8,3,1]))
