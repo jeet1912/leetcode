@@ -53,6 +53,26 @@ class Counting:
             d[curr] +=1
         return ans
 
+    def playersWithZeroOrOneLoss(self, nums: list[list[int]]) -> list[int]:
+        lost = defaultdict(int)
+        won = defaultdict(int)
+        for match in nums:
+            winner, loser = match[0], match[1]
+            if winner not in lost.keys():
+                won[winner] +=1
+            if loser in won.keys():
+                del won[loser]
+            lost[loser] +=1
+        requiredLosers = []
+        for key, value in lost.items():
+            if value <= 1:
+                requiredLosers.append(key)
+        winners = sorted(won.keys())
+        requiredLosers = sorted(requiredLosers)
+        return [winners,requiredLosers]
+
+
+        
         
             
 c = Counting()
