@@ -96,7 +96,18 @@ class Counting:
         occurrances["l"] = occurrances["l"]//2
         occurrances["o"] = occurrances["o"]//2
         return min(occurrances.values())
-            
+    
+    def maxLengthContiguousSubArrWithEqual0s1s(self, nums: list[int]) -> int:
+        d = defaultdict(int)
+        d[0] = -1
+        count = maxLen = 0
+        for i in range(len(nums)):
+            count += 1 if nums[i] == 1 else -1
+            if count in d:
+                maxLen = max(maxLen, i-d[count])
+            else:
+                d[count] = i
+        return maxLen
             
 c = Counting()
-print(c.maxNumberOfBalloon(text="balon"))
+print(c.maxLengthContiguousSubArrWithEqual0s1s(nums=[0,1,1,1,1,1,0,0,0]))
