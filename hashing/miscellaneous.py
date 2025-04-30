@@ -19,7 +19,19 @@ class Miscellaneous:
         
         return minLen if minLen!= float('inf') else -1
             
-    #def minConsecutiveCardToPick2(self, cards:)
+    # or length of the shortest subarray        
+    def shortestDistanceBetweenDuplicates(self, nums: list[int]) -> int:
+        hashMap = defaultdict(list)
+        for i, num in enumerate(nums):
+            hashMap[num].append(i)
+        
+        minValue = float('inf')
+        for values in hashMap.values():
+            for i in range(len(values)-1):
+                minValue = min(minValue, values[i+1] - values[i] + 1)
+        
+        return minValue if minValue!= float('inf') else -1
+
     
 m = Miscellaneous()
-print(m.minConsecutiveCardToPick(cards=[1,2,6,2,1]))
+print(m.shortestDistanceBetweenDuplicates(nums=[1,2,6,2,1]))
