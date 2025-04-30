@@ -44,7 +44,6 @@ class Miscellaneous:
             num //= 10
         return digitSum
     
-    
     def maxSumOfPairWithEqualSumOfDigits(self, nums:list[int]) -> int:
         d = defaultdict(list)
         for num in nums:
@@ -56,8 +55,16 @@ class Miscellaneous:
                 maxValue = max(maxValue,values[-1] + values[-2])
         return maxValue if maxValue!=0 else -1
     
-
-
+    
+    def maxSumOfPairWithEqualSumOfDigits2(self, nums:list[int]) -> int:
+        d = defaultdict(int)
+        ans = -1
+        for num in nums:
+            digitSum = self.sumOfDigits(num=num)
+            if digitSum in d:
+                ans = max(ans, num + d[digitSum])
+            d[digitSum] = max(d[digitSum],num)
+        return ans
 
 m = Miscellaneous()
-print(m.maxSumOfPairWithEqualSumOfDigits(nums=[18,43,36,13,7]))
+print(m.maxSumOfPairWithEqualSumOfDigits2(nums=[18,43,36,13,7]))
