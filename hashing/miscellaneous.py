@@ -66,5 +66,29 @@ class Miscellaneous:
             d[digitSum] = max(d[digitSum],num)
         return ans
 
+
+    def equalRowsColumns(self, nums: list[list[int]]) -> int:
+        def convert_to_key(arr):
+            return tuple(arr)
+        
+        dr = defaultdict(int)
+        for row in nums:
+            dr[convert_to_key(row)] += 1
+        
+        dr2 = defaultdict(int)
+        for col in range(len(nums[0])):
+            column = []
+            for row in range(len(nums)):
+                column.append(nums[row][col])
+            dr2[convert_to_key(column)] += 1
+        
+        ans = 0
+
+        for arr in dr:
+            ans += dr[arr]*dr2[arr]
+        
+        return ans
+
+
 m = Miscellaneous()
 print(m.maxSumOfPairWithEqualSumOfDigits2(nums=[18,43,36,13,7]))
