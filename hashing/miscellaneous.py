@@ -104,9 +104,17 @@ class Miscellaneous:
                 return False
         return True
 
-        
 
+    def numJewelsInStones(self, jewels:str, stones:str) -> int: 
+        counterStones = defaultdict(int)
+        for char in stones:
+            counterStones[char] += 1
         
+        ans = 0
+        for char in jewels:
+            if char in counterStones:
+                ans += counterStones[char]
+        return ans
 
 m = Miscellaneous()
-print(m.canConstruct(ransomNote="aa",magazine="aav"))
+print(m.numJewelsInStones(jewels="Z",stones="ZZ"))
