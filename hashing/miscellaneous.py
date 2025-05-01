@@ -88,7 +88,25 @@ class Miscellaneous:
             ans += dr[arr]*dr2[arr]
         
         return ans
+    
 
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        d = defaultdict(int)
+        d2 = defaultdict(int)
+        for char in ransomNote:
+            d[char] += 1
+        
+        for char in magazine:
+            d2[char] += 1
+        
+        for char in d.keys():
+            if  d[char] > d2[char]:
+                return False
+        return True
+
+        
+
+        
 
 m = Miscellaneous()
-print(m.maxSumOfPairWithEqualSumOfDigits2(nums=[18,43,36,13,7]))
+print(m.canConstruct(ransomNote="aa",magazine="aav"))
