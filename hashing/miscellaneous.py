@@ -116,5 +116,19 @@ class Miscellaneous:
                 ans += counterStones[char]
         return ans
 
+
+    def lengthOfLongestSubstringWithoutDup(self, s:str) -> int:
+        tracker = defaultdict(int)
+        left = ans = 0
+        for right in range(len(s)):
+            tracker[s[right]]+=1
+            while tracker[s[right]]>1:
+                tracker[s[left]] -= 1
+                left += 1
+            ans = max(ans, right-left+1)
+        return ans
+
+
+
 m = Miscellaneous()
-print(m.numJewelsInStones(jewels="Z",stones="ZZ"))
+print(m.lengthOfLongestSubstringWithoutDup(s="pwwkew"))
