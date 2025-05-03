@@ -108,6 +108,17 @@ class Counting:
             else:
                 d[count] = i
         return maxLen
+    
+    def sumOfUnique(self, nums: list[int]) -> int:
+        d = defaultdict(int)
+        for num in nums:
+            d[num] += 1
+        sum = 0
+        for key, value in d.items():
+            if value == 1:
+                sum += key
+        return sum
+
             
 c = Counting()
-print(c.maxLengthContiguousSubArrWithEqual0s1s(nums=[0,1,1,1,1,1,0,0,0]))
+print(c.sumOfUnique(nums=[1,2,3,2]))
