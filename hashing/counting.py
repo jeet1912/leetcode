@@ -144,6 +144,22 @@ class Counting:
         if len(ans) != 0:
             return max(ans)
         return -1
+    
+    def uniqueOccurrences(self, arr: list[int]) -> bool:
+        d = defaultdict(int)
+        for num in arr:
+            d[num] += 1
+        
+        pH = set()
+        for value in d.values():
+            pH.add(value)
+        
+        if len(pH) != len(d):
+            return False
+        return True
+
+
+        
             
 c = Counting()
-print(c.findLucky(nums=[1,2,2,3,3,3]))
+print(c.uniqueOccurrences(arr=[1,2,2,3,3,3]))
