@@ -149,7 +149,6 @@ class Counting:
         d = defaultdict(int)
         for num in arr:
             d[num] += 1
-        
         pH = set()
         for value in d.values():
             pH.add(value)
@@ -158,8 +157,17 @@ class Counting:
             return False
         return True
 
-
+    def frequencySort(self, s: str) -> str:
+        d = defaultdict(int)        
+        for char in s:
+            d[char] += 1
+        sortedD = sorted(d.items(),key= lambda item: item[1], reverse=True)
+        ans = []
+        for char, count in sortedD:
+            for _ in range(count):
+                ans.append("".join(char))
+        return "".join(ans)
         
             
 c = Counting()
-print(c.uniqueOccurrences(arr=[1,2,2,3,3,3]))
+print(c.frequencySort(s="tree"))
