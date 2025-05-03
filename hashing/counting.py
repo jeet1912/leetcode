@@ -200,5 +200,24 @@ class Counting:
             ans = max(ans, right-left+1)
         return ans
 
+    def numIdenticalPairs(self, nums: list[int]) -> int:
+        count = 0
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                if i<j and nums[i] == nums[j]:
+                    count += 1
+        return count
+    
+    def numIdenticalPairs2(self, nums: list[int]) -> int:
+        d = defaultdict(int)
+        for num in nums:
+            d[num] += 1
+        pairs = 0
+        for num in nums:
+            if d[num]!=0:
+                d[num]-=1
+                pairs+=d[num]
+        return pairs
+
 c = Counting()
-print(c.lengthOfLongestGoodArray(nums=[1,2,3,1,2,3,1,2],k=2))
+print(c.numIdenticalPairs2(nums=[1,2,3,1,1,3]))
