@@ -123,19 +123,27 @@ class Counting:
         d = defaultdict(int)
         for num in nums:
             d[num] += 1
-        
         maxVal = 0
         for key, value in d.items():
             if value > maxVal:
                 maxVal = value
-        
         ans = 0
         for key, value in d.items():
             if maxVal == value:
                 ans += value
-
         return ans
 
+    def findLucky(self, nums:list[int]) -> int:
+        d = defaultdict(int)
+        for num in nums:
+            d[num]+=1
+        ans=[]
+        for key, value in d.items():
+            if key == value:
+                ans.append(key)
+        if len(ans) != 0:
+            return max(ans)
+        return -1
             
 c = Counting()
-print(c.maxFrequencyElements(nums=[1,2,2,3,1,4]))
+print(c.findLucky(nums=[1,2,2,3,3,3]))
