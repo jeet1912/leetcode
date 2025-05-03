@@ -168,6 +168,37 @@ class Counting:
                 ans.append("".join(char))
         return "".join(ans)
         
-            
+    
+    def frequencySort2(self, s: str) -> str:
+        d = defaultdict(int)
+        for char in s:
+           d[char] += 1
+        pH = set()
+        for value in d.values():
+            pH.add(value)
+        pH = sorted(list(pH), reverse=True)
+        finalString = ""
+        for val in pH:
+           print("val ", val)
+           for key, value in d.items():
+               print("key and value ", key, value)
+               if val == value:
+                    for _ in range(value):
+                        finalString += "".join(key)
+                    print(finalString)
+        return finalString
+    
+    def lengthOfLongestGoodArray(self, nums:list[int], k: int) -> int:
+        d = defaultdict(int)
+        ans = 0
+        left = right = 0
+        for right in range(len(nums)):
+            d[nums[right]] += 1
+            while d[nums[right]] > k:
+                d[nums[left]] -=1
+                left+=1
+            ans = max(ans, right-left+1)
+        return ans
+
 c = Counting()
-print(c.frequencySort(s="tree"))
+print(c.lengthOfLongestGoodArray(nums=[1,2,3,1,2,3,1,2],k=2))
