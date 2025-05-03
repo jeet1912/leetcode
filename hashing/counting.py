@@ -118,7 +118,24 @@ class Counting:
             if value == 1:
                 sum += key
         return sum
+    
+    def maxFrequencyElements(self, nums:list[int]) -> int:
+        d = defaultdict(int)
+        for num in nums:
+            d[num] += 1
+        
+        maxVal = 0
+        for key, value in d.items():
+            if value > maxVal:
+                maxVal = value
+        
+        ans = 0
+        for key, value in d.items():
+            if maxVal == value:
+                ans += value
+
+        return ans
 
             
 c = Counting()
-print(c.sumOfUnique(nums=[1,2,3,2]))
+print(c.maxFrequencyElements(nums=[1,2,2,3,1,4]))
