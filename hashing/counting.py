@@ -218,6 +218,16 @@ class Counting:
                 d[num]-=1
                 pairs+=d[num]
         return pairs
+    
+    def binarySubArraysWithSumG(sellf, nums:list[int], goal:int) -> int:
+        d = defaultdict(int)
+        d[0] = 1
+        curr = ans = 0
+        for right in range(len(nums)):
+            curr += nums[right]
+            ans += d[curr-goal]
+            d[curr] += 1
+        return ans
 
 c = Counting()
-print(c.numIdenticalPairs2(nums=[1,2,3,1,1,3]))
+print(c.binarySubArraysWithSumG(nums=[1,0,1,0,1],goal=2))
