@@ -228,6 +228,23 @@ class Counting:
             ans += d[curr-goal]
             d[curr] += 1
         return ans
+    
+    def maxUniqueSubarray(self, nums: list[int]) -> int:
+        d = defaultdict(int)
+        left = right = ans = 0
+        
+        prefixSum = [0]*(len(nums)+1)
+        
+        for i in range(len(nums)):
+            prefixSum[i+1] = prefixSum[i] + nums[i]
+
+        for right in range(len(nums)):
+            d[nums[right]] += 1
+            while d[nums[right]] > 1:
+                d[nums[left]] -= 1
+                left += 1
+            ans = max(ans, prefixSum[right+1] - prefixSum[left])
+        return ans
 
 c = Counting()
-print(c.binarySubArraysWithSumG(nums=[1,0,1,0,1],goal=2))
+print(c.maxUniqueSubarray(nums=[4,2,4,5,6]))
