@@ -245,6 +245,28 @@ class Counting:
                 left += 1
             ans = max(ans, prefixSum[right+1] - prefixSum[left])
         return ans
+    
+    def checkInclusion(self, s1:str, s2:str) -> bool:
+        if len(s1)>len(s2):
+            return False
+        d1 = defaultdict(int)
+        d2 = defaultdict(int)
+        for i in range(len(s1)):
+            d1[s1[i]] += 1
+            d2[s2[i]] += 1
+        if d1 == d2:
+            return True    
+        left = 0
+        for right in range(len(s1),len(s2)):
+            d2[s2[right]] += 1
+            d2[s2[left]] -=1
+            if d2[s2[left]] == 0:
+                del d2[s2[left]]
+            left+=1
+            if d1 == d2:
+                return True
+        return False
+
 
 c = Counting()
-print(c.maxUniqueSubarray(nums=[4,2,4,5,6]))
+print(c.checkInclusion(s1="ab",s2="eidbaooo"))
