@@ -266,7 +266,19 @@ class Counting:
             if d1 == d2:
                 return True
         return False
+    
+    def isIsomorphic(self, s:str, t:str) -> bool:
+        if len(s) != len(t):
+            return False
+        d1 = defaultdict(list)
+        d2 = defaultdict(list)
+        for i in range(len(s)):
+            d1[s[i]].append(i)
+            d2[t[i]].append(i)
+        if sorted(d1.values()) != sorted(d2.values()):
+            return False
+        return True
 
 
 c = Counting()
-print(c.checkInclusion(s1="ab",s2="eidbaooo"))
+print(c.isIsomorphic(s="egg",t="add"))
