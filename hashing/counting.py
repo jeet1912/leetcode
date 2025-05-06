@@ -282,20 +282,42 @@ class Counting:
     def isIsomorphic2(self, s:str, t:str) -> bool:
         if len(s) != len(t):
             return False
-
         mapst = dict()
         mapts = dict()
-
         for charS, charT in zip(s,t):
             if charS in mapst:
                 if mapst[charS] != charT:
                     return False
+            else:
                 mapst[charS] = charT
             if charT in mapts:
                 if mapts[charT] != charS:
                     return False
+            else:
                 mapts[charT] = charS
         return True 
+    
+    def wordPattern(self, pattern:str, s:str) -> bool:
+        newFormat = []
+        for word in s.split(" "):
+            newFormat.append(word)
+        if len(newFormat) != len(pattern):
+            return False
+        patternToWord = {}
+        wordToPattern = {}
+        for char, word in zip(pattern,newFormat):
+            if char in patternToWord:
+                if patternToWord[char] != word:
+                    return False
+            else:
+                patternToWord[char] = word
+            if word in wordToPattern:
+                if wordToPattern[word] != char:
+                    return False
+            else:
+                wordToPattern[word] = char
+        return True
+            
 
 c = Counting()
-print(c.isIsomorphic2(s="egg",t="add"))
+print(c.wordPattern(pattern="abba",s="dog cat cat dog dog"))
