@@ -278,7 +278,24 @@ class Counting:
         if sorted(d1.values()) != sorted(d2.values()):
             return False
         return True
+    
+    def isIsomorphic2(self, s:str, t:str) -> bool:
+        if len(s) != len(t):
+            return False
 
+        mapst = dict()
+        mapts = dict()
+
+        for charS, charT in zip(s,t):
+            if charS in mapst:
+                if mapst[charS] != charT:
+                    return False
+                mapst[charS] = charT
+            if charT in mapts:
+                if mapts[charT] != charS:
+                    return False
+                mapts[charT] = charS
+        return True 
 
 c = Counting()
-print(c.isIsomorphic(s="egg",t="add"))
+print(c.isIsomorphic2(s="egg",t="add"))
