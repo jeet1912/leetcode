@@ -16,15 +16,17 @@ class ListNode:
             return 0
         return head.val + self.getSum(head.next)
     
-    def addToEnd(self, node1, node):
-        if node1.next != None:
+    def addToEnd(self, prevNode, node):
+        if prevNode.next != None:
             print("Sorry, try another approach.")
-        node1.next = node
+        prevNode.next = node
     
-    def addInBetween(self, node1, node):
-        node.next = node1.next
-        node1.next = node
+    def addInBetween(self, prevNode, node):
+        node.next = prevNode.next
+        prevNode.next = node
 
+    def deleteNode(self, prevNode):
+        prevNode.next = prevNode.next.next
 
 one = ListNode(1)
 two = ListNode(2)
@@ -39,6 +41,12 @@ three.addToEnd(three,four)
 head.addInBetween(three,five)
 print(three.next.val)
 print(five.next.val)
+head.deleteNode(three)
+print(three.next.val)
+print(four.next)
+print(five.next.val)
+head.addToEnd(four,five)
+five.next = None
 print(two.getSum(head))
 
 
