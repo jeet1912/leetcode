@@ -3,12 +3,17 @@ class ListNode:
         self.val = val
         self.next = None
 
-    def traversal(self,head):
-        self.sum = 0
-        while head:
-            self.sum += head.val
-            head = head.next
-        return self.sum
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def traversal(self):
+        totalSum = 0
+        current = self.head
+        while current:
+            totalSum += current.val
+            current = current.next
+        return totalSum
 
     def getSum(self, head):
         # Using recursion
@@ -16,18 +21,54 @@ class ListNode:
             return 0
         return head.val + self.getSum(head.next)
     
-    def addToEnd(self, prevNode, node):
-        if prevNode.next != None:
-            print("Sorry, try another approach.")
-        prevNode.next = node
+    def append(self, val):
+        newNode = ListNode(val)
+        if not self.head:
+            self.head = newNode
+            print("head.val ",self.head.val)
+            return
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = newNode
+        #print("Current.val ",current.val)
+        return
     
-    def addInBetween(self, prevNode, node):
-        node.next = prevNode.next
-        prevNode.next = node
+    def addInBetween(self, prevVal, val):
+        current = self.head
+        while current and current.val != prevVal:
+            current = current.next
+        if not current:
+            print(f"Node with val {prevVal} not found.")
+        newNode = ListNode(val)
+        newNode.next = current.next
+        current.next = newNode
+        #print("Current.val ",current.val)
+        #print("Current.next.val ", current.next.val)
+        return
 
-    def deleteNode(self, prevNode):
-        prevNode.next = prevNode.next.next
+    def delete(self, val):
+        if not self.head:
+            print("Empy list!")
+            return
+        current = self.head
+        while current and current.next.val != val:
+            current = current.next
+        if current.next:
+            current.next = current.next.next
+        else:
+            print(f"Node with val {val} not found.")
 
+
+singly = SinglyLinkedList()
+singly.append(1)
+singly.append(2)
+singly.append(4)
+singly.addInBetween(2,3)
+print(singly.traversal())
+singly.delete(2)
+print(singly.getSum(singly.head))
+'''
 one = ListNode(1)
 two = ListNode(2)
 three = ListNode(3)
@@ -48,6 +89,6 @@ print(five.next.val)
 head.addToEnd(four,five)
 five.next = None
 print(two.getSum(head))
-
+'''
 
 
