@@ -5,11 +5,11 @@ class ListNode:
 
 class SinglyLinkedList:
     def __init__(self):
-        self.head = None
+        self.head = ListNode(None)
 
     def traversal(self):
         totalSum = 0
-        current = self.head
+        current = self.head.next
         while current:
             totalSum += current.val
             current = current.next
@@ -23,10 +23,6 @@ class SinglyLinkedList:
     
     def append(self, val):
         newNode = ListNode(val)
-        if not self.head:
-            self.head = newNode
-            print("head.val ",self.head.val)
-            return
         current = self.head
         while current.next:
             current = current.next
@@ -35,7 +31,7 @@ class SinglyLinkedList:
         return
     
     def addInBetween(self, prevVal, val):
-        current = self.head
+        current = self.head.next
         while current and current.val != prevVal:
             current = current.next
         if not current:
@@ -48,9 +44,6 @@ class SinglyLinkedList:
         return
 
     def delete(self, val):
-        if not self.head:
-            print("Empy list!")
-            return
         current = self.head
         while current and current.next.val != val:
             current = current.next
@@ -58,7 +51,7 @@ class SinglyLinkedList:
             current.next = current.next.next
         else:
             print(f"Node with val {val} not found.")
-
+        return
 '''
 singly = SinglyLinkedList()
 singly.append(1)
