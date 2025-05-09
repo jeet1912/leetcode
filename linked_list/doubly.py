@@ -4,65 +4,64 @@ class ListNode:
         self.next = None
         self.prev = None
 
-def addDL(node,node_to_add):
-    prev_node = node.prev
-    node_to_add.prev = prev_node
-    node_to_add.next = node
-    prev_node.next = node_to_add
-    node.prev = node_to_add
 
-def deleteDL(node):
-    prev_node = node.prev
-    next_node = node.next
-    prev_node.next = next_node
-    next_node.prev = prev_node
-        
-def add_to_end(node):
-    node.next = tail
-    node.prev = tail.prev
-    tail.prev.next = node
-    tail.prev = node
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = ListNode(None)  
+        self.tail = ListNode(None)  
+        self.head.next = self.tail
+        self.tail.prev = self.head
 
-def remove_from_end():
-    if head.next == tail:
-        return
-    to_remove = tail.prev
-    to_remove.prev.next = tail
-    tail.prev = to_remove.prev
+    def add_to_end(self, node_to_add):
+        node_to_add.next = self.tail
+        node_to_add.prev = self.tail.prev
+        self.tail.prev.next = node_to_add
+        self.tail.prev = node_to_add
 
-def add_to_start(node):
-    node.prev = head
-    node.next = head.next
-    head.next.prev = node
-    head.next = node
+    def remove_from_end(self):
+        if self.head.next == self.tail: 
+            return
+        node_to_remove = self.tail.prev
+        node_to_remove.prev.next = self.tail
+        self.tail.prev = node_to_remove.prev
 
-def remove_from_start():
-    if head.next == tail:
-        return
-    to_remove = head.next
-    to_remove.next.prev = head
-    head.next = to_remove.next
-    
-def getSumUsingDummy(head):
-    ans = 0
-    dummy = head
-    while(dummy):
-        if dummy.val != None:
-            ans += dummy.val
-        dummy = dummy.next     
-    return ans
+    def add_to_start(self, node_to_add):
+        next_node = self.head.next
+        node_to_add.prev = self.head
+        node_to_add.next = next_node
+        next_node.prev = node_to_add
+        self.head.next = node_to_add
 
-# With sentinel nodes
-head = ListNode(None)
-tail = ListNode(None)
-head.next = tail
-tail.prev = head
+    def remove_from_start(self):
+        if self.head.next == self.tail:  
+            return
+        node_to_remove = self.head.next
+        node_to_remove.next.prev = self.head
+        self.head.next = node_to_remove.next
+
+    def get_sum(self):
+        ans = 0
+        current = self.head.next  
+        while current != self.tail:  
+            ans += current.val
+            current = current.next
+        return ans
+
+
+dll = DoublyLinkedList()
+
 one = ListNode(1)
+dll.add_to_start(one)
 two = ListNode(2)
+dll.add_to_end(two)
 three = ListNode(3)
+dll.add_to_end(three)
 
-add_to_start(one)
-addDL(one,two)
-add_to_end(three)
-s = getSumUsingDummy(head)
-print(s)
+
+print(dll.get_sum())  
+
+
+dll.remove_from_start()
+print(dll.get_sum())  
+dll.remove_from_end()
+print(dll.get_sum())  
