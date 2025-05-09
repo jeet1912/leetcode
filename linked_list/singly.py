@@ -59,7 +59,7 @@ class SinglyLinkedList:
         else:
             print(f"Node with val {val} not found.")
 
-
+'''
 singly = SinglyLinkedList()
 singly.append(1)
 singly.append(2)
@@ -68,6 +68,7 @@ singly.addInBetween(2,3)
 print(singly.traversal())
 singly.delete(2)
 print(singly.getSum(singly.head))
+'''
 '''
 one = ListNode(1)
 two = ListNode(2)
