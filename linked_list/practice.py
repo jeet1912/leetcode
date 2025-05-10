@@ -37,11 +37,32 @@ class Practice:
             fast = fast.next
         return slow.val
 
+    def getMiddle2(self, head: ListNode) -> int:    
+        slow = fast = head  
+        length = 0
+        while fast:
+            length += 1
+            fast = fast.next
+        print("length ", length)
+        for _ in range(length // 2): 
+            slow = slow.next
+        return slow.val 
+    '''
+        slow = fast = head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow.val
+    '''
+                
 l = SinglyLinkedList()
 l.append(1)
 l.append(2)
 l.append(3)
-l.addInBetween(2,4)
+l.addInBetween(3,4)
 l.append(5)
+l.append(6)
+l.append(7)
+l.append(8)
 p = Practice()
-print(p.kThEleFromEnd(l.head,3))
+print(p.getMiddle2(l.head.next))
