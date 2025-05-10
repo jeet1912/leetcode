@@ -54,8 +54,18 @@ class Practice:
             fast = fast.next.next
         return slow.val
     '''
+
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        curr = head
+        while curr and curr.next:
+            if curr.val == curr.next.val:
+                curr.next = curr.next.next
+            else:
+                curr = curr.next #edge case [1,1,1]
+        return curr
                 
 l = SinglyLinkedList()
+'''
 l.append(1)
 l.append(2)
 l.append(3)
@@ -64,5 +74,12 @@ l.append(5)
 l.append(6)
 l.append(7)
 l.append(8)
+'''
+l.append(1)
+l.append(1)
+l.append(2)
+l.append(3)
+l.append(3)
 p = Practice()
-print(p.getMiddle2(l.head.next))
+print(p.deleteDuplicates(l.head.next))
+print(l.getSum(l.head.next))
