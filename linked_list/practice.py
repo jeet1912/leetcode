@@ -55,7 +55,7 @@ class Practice:
         return slow.val
     '''
 
-    def deleteDuplicates(self, head: ListNode) -> ListNode:
+    def deleteDuplicatesAscendingOrder(self, head: ListNode) -> ListNode:
         curr = head
         while curr and curr.next:
             if curr.val == curr.next.val:
@@ -63,6 +63,16 @@ class Practice:
             else:
                 curr = curr.next #edge case [1,1,1]
         return curr
+    
+    def reverse(self, head:ListNode) -> ListNode:
+        prev = ListNode(None)
+        curr = head
+        while curr:
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        return prev
                 
 l = SinglyLinkedList()
 '''
