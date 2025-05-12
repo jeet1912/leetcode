@@ -73,6 +73,21 @@ class Practice:
             prev = curr
             curr = next
         return prev
+    
+    def swapInPairs(self, head: ListNode) -> ListNode:
+        if not head and not head.next:
+            return head
+        dummy = head.next
+        prev = ListNode(None)
+        while head and head.next.next:
+            if prev:
+                prev.next = head.next
+            prev = head
+            nextNode = head.next.next
+            head.next.next = head
+            head.next = nextNode
+            head = nextNode
+        return dummy
                 
 l = SinglyLinkedList()
 '''
