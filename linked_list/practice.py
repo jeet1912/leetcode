@@ -108,23 +108,36 @@ class Practice:
             head = head.next
             prev = prev.next
         return maxSum
+    
+    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
+        if left == right:
+            return head
+        first = second = head
+        while left-2:
+            first = first.next
+            left -=1
+        while right-1:
+            second = second.next
+            right-=1
+        leftMost = first
+        first = first.next
+        curr = first.next
+        while first != second:
+            nextNode = curr.next
+            curr.next = first
+            first = curr
+            curr = nextNode
+        leftMost.next.next = curr
+        leftMost.next = curr
+        return head
+
             
 
-                
 l = SinglyLinkedList()
-'''
-l.append(1)
-l.append(2)
-l.append(3)
-l.addInBetween(3,4)
-l.append(5)
-l.append(6)
-l.append(7)
-l.append(8)
-'''
 l.append(1)
 l.append(2)
 l.append(3)
 l.append(4)
+l.append(5)
 p = Practice()
-print(p.maxTwinSum(l.head.next))
+print(p.reverseBetween(l.head.next,2,4))
