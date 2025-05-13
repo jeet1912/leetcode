@@ -75,19 +75,41 @@ class Practice:
         return prev
     
     def swapInPairs(self, head: ListNode) -> ListNode:
-        if not head and not head.next:
+        if not head or not head.next:
             return head
-        dummy = head.next
-        prev = ListNode(None)
-        while head and head.next.next:
+        dummy = head.next               
+        prev = None                     
+        while head and head.next:
             if prev:
-                prev.next = head.next
-            prev = head
-            nextNode = head.next.next
-            head.next.next = head
-            head.next = nextNode
-            head = nextNode
+                prev.next = head.next   
+            prev = head                 
+            next_node = head.next.next  
+            head.next.next = head       
+            head.next = next_node     
+            head = next_node            
         return dummy
+    
+    def maxTwinSum(self, head: ListNode) -> ListNode:
+        fast = slow = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        mid = slow
+        curr = mid
+        prev = None
+        while curr:
+            newNode = curr.next
+            curr.next = prev
+            prev = curr
+            curr = newNode
+        maxSum = 0
+        while prev:
+            maxSum = max(maxSum, head.val + prev.val)
+            head = head.next
+            prev = prev.next
+        return maxSum
+            
+
                 
 l = SinglyLinkedList()
 '''
@@ -101,10 +123,8 @@ l.append(7)
 l.append(8)
 '''
 l.append(1)
-l.append(1)
 l.append(2)
 l.append(3)
-l.append(3)
+l.append(4)
 p = Practice()
-print(p.deleteDuplicates(l.head.next))
-print(l.getSum(l.head.next))
+print(p.maxTwinSum(l.head.next))
