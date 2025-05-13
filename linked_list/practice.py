@@ -112,24 +112,25 @@ class Practice:
     def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
         if left == right:
             return head
-        first = second = head
-        while left-2:
-            first = first.next
-            left -=1
-        while right-1:
-            second = second.next
-            right-=1
-        leftMost = first
-        first = first.next
+
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
+
+        for _ in range(left - 1):
+            prev = prev.next
+
+        first = prev.next
         curr = first.next
-        while first != second:
+
+        for _ in range(right - left):
             nextNode = curr.next
-            curr.next = first
-            first = curr
+            curr.next = prev.next
+            prev.next = curr
+            first.next = nextNode
             curr = nextNode
-        leftMost.next.next = curr
-        leftMost.next = curr
-        return head
+
+        return dummy.next
 
             
 
